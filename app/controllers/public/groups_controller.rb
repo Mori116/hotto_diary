@@ -11,6 +11,9 @@ class Public::GroupsController < ApplicationController
   def edit
   end
 
+  def join_groups
+  end
+
   def join
   end
 end
