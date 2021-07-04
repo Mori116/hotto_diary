@@ -22,3 +22,27 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.top-visual {
+  display: flex;
+}
+
+.top-title {
+  margin-top: 150px;
+  margin-left: 150px;
+}
+
+.main-visual {
+  margin-left: 10%;
+  width: 60%;
+  height: 520px;
+  background-image: url(book.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+.about-background {
+  width: 100%;
+  height: 100%;
+  background-image: url(book3.jpg);
+}
