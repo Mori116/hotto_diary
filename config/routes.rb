@@ -1,36 +1,43 @@
 Rails.application.routes.draw do
+
   devise_for :users
   devise_for :admins, controllers: {
     sessions: 'admins/sessions'
   }
 
+scope module: :public do
   root to: 'homes#top'
   get 'homes/about' => "homes#about"
 
-  resouces :users, only: [:show, :edit, :update] do
+  resources :users, only: [:show, :edit, :update] do
     member do
     get 'quit'
     patch 'withdraw'
     end
   end
 
-  resouces :diaries do
-    resouces :diary_comments, only: [:create, :destroy]
+  resources :diaries do
+    resources :diary_comments, only: [:create, :destroy]
   end
 
-  resouces :groups do
+  resources :groups do
+    collection do
+      get 'join_groups'
+    end
     member do
-    get 'join'
+      get 'join'
     end
   end
 
   get '/search' => "search#search"
 
+end
+
   namespace :admin do
-    resouces :news, only: [:new, :create, :edit, :update]
-    resouces :users, only: [:index, :show, :edit, :update]
-    resouces :diaries, only: [:index, :show, :edit, :update, :destroy]
-    resouces :groups, only: [:index, :show, :edit, :update, :destroy]
+    resources :news, only: [:new, :create, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :diaries, only: [:index, :show, :edit, :update, :destroy]
+    resources :groups, only: [:index, :show, :edit, :update, :destroy]
     get '/search' => "search#search"
   end
 

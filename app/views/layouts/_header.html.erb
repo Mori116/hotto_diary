@@ -1,0 +1,40 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <div>
+          <%= link_to "LOGO", root_path %>
+        </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light fas fa-home' %>
+            </li>
+            <li class="nav-item">
+              </i><%= link_to '交換日記', join_groups_groups_path, class: 'nav-link text-light fas fa-book-open' %>
+            </li>
+            <li class="nav-item">
+               <%= link_to 'グループ検索', groups_path, class: 'nav-link text-light fas fa-book-open' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light fas fa-sign-out-alt' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'ほっとダイアリーとは', homes_about_path, class: 'nav-link text-light fas fa-home' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '新規登録', new_user_registration_path, class: 'nav-link text-light fas fa-user-plus' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light fas fa-link' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

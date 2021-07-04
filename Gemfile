@@ -70,3 +70,5 @@ gem 'kaminari','~> 1.2.1'
 gem 'jquery-rails'
 gem 'pry-byebug'
 gem "simple_calendar", "~> 2.4"
+gem 'devise-i18n'
+gem 'devise-i18n-views'

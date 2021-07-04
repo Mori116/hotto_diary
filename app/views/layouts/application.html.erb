@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>HottoDiary</title>
     <%= csrf_meta_tags %>
@@ -10,6 +11,20 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <main>
+      <%= yield %>
+    </main>
+
+    <fotter>
+      <div class="container">
+        <div class="row">
+          <div class="mx-auto">
+            ©2021 MN
+          </div>
+        </div>
+      </div>
+    </fotter>
   </body>
+
 </html>
