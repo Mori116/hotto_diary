@@ -1,2 +1,23 @@
-<h1>Public::Groups#join</h1>
-<p>Find me in app/views/public/groups/join.html.erb</p>
+<div class="container">
+  <h1 class="my-5">グループ参加</h1>
+  <div class="row">
+    <div class="mx-auto">
+      <p><strong>グループのパスワードをご入力ください。</strong></p>
+      <p>
+        ※本パスワードは、グループ作成時に設定いただいたものです。<br>
+      　ご不明な場合は、グループ作成者へお伺いください。
+      </p>
+
+      <%= form_with model: @group, url: join_create_group_path, local: true do |f| %>
+        <div class="field">
+          <%= f.label :password, "パスワード" %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "参加する", class: 'btn btn-primary mt-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,33 @@
-<h1>Public::Groups#show</h1>
-<p>Find me in app/views/public/groups/show.html.erb</p>
+<div class="container">
+  <h1>グループ詳細</h1>
+  <div class="row">
+    <div class="mx-auto d-flex">
+      <%= attachment_image_tag @group, :image, size: "250x200", fallback: "no_image.jpg" %>
+
+      <table>
+        <tr>
+          <td>グループ名</td>
+          <td><%= @group.name %></td>
+        </tr>
+        <tr>
+          <td>参加人数</td>
+          <td><%= @group.users.count %></td>
+        </tr>
+        <tr>
+          <td>グループ作成者</td>
+          <td><%= @owner_nickname %></td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+    <% if @group.owner_id == current_user.id %>
+      <%= link_to "編集する", edit_group_path(@group), class: "btn" %>
+    <% elsif @group.users.include?(current_user) %>
+      <%= link_to "退出する", exit_group_path(@group), method: :delete, class: "btn" %>
+    <% else %>
+      <%= link_to "参加する", join_group_path(@group), class: "btn" %>
+    <% end %>
+
+      <%= link_to "交換日記へ", group_diaries_path(@group), class: "btn" %>
+</div>
