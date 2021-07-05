@@ -22,11 +22,20 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def withdraw
+    @user = User.find(current_user.id)
+    @user.update(is_deleted: true)
+    # ユーザステータスを有効から退会にする
+    reset_session
+    # すべてのセッション情報を削除
+    redirect_to root_path
+  end
+
 
   private
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :email)
+    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :email, :is_deleted)
   end
 
 end
