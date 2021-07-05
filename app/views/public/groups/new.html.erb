@@ -1,2 +1,38 @@
-<h1>Public::Groups#new</h1>
-<p>Find me in app/views/public/groups/new.html.erb</p>
+<div class="container">
+  <h1 class="my-5">グループ作成</h1>
+  <div class="row">
+    <div class="mx-auto">
+
+      <%= form_with model: @group, local: true do |f| %>
+        <table>
+          <tr>
+            <td>
+              <%= f.label :name, "グループ名" %>
+              <%= f.text_field :name %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :image, 'グループ画像' %>
+              <%= f.attachment_field :image %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :password, "パスワード（6文字以上）" %>
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :password_confirmation, "パスワード（確認用）" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </td>
+          </tr>
+        </table>
+
+        <%= f.submit '作成する', class: 'btn btn-success offset-5' %>
+      <% end %>
+    </div>
+  </div>
+</div>
