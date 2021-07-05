@@ -9,6 +9,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
+
           <% if user_signed_in? %>
             <li class="nav-item">
               <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-light fas fa-home' %>
@@ -22,6 +23,7 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light fas fa-sign-out-alt' %>
             </li>
+
           <% elsif admin_signed_in? %>
             <li class="nav-item">
               <%= link_to 'お知らせ一覧', root_path, class: 'nav-link text-light fas fa-home' %>
@@ -35,6 +37,7 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light fas fa-sign-out-alt' %>
             </li>
+
           <% else %>
             <li class="nav-item">
               <%= link_to 'ほっとダイアリーとは', homes_about_path, class: 'nav-link text-light fas fa-home' %>
