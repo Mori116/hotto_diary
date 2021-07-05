@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
 
+# user側
 scope module: :public do
   root to: 'homes#top'
   get 'homes/about' => "homes#about"
@@ -33,6 +34,7 @@ scope module: :public do
 
 end
 
+# 管理者側
   namespace :admin do
     resources :news, only: [:new, :create, :edit, :update]
     resources :users, only: [:index, :show, :edit, :update]
