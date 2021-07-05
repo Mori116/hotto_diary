@@ -3,28 +3,51 @@
   <div class="main-visual"></div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <h2>お知らせ</h2>
-    <div class="col-6">
-      <table class="table">
-        <tbody>
-          <% @news.each do |news| %>
-            <tr><%= news.created_at.strftime('%Y/%m/%d') %></tr>
-            <tr><%= news.title %></tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-6">
-      <p>
-        新規登録済の方はこちら<br>
-        <%= link_to "ログインする", new_user_session_path, class: "btn btn-success" %>
-      </p>
-      <p>
-        未登録の方はこちら<br>
-        <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-primary" %>
-      </p>
+<% if admin_signed_in? %>
+  <div class="container">
+    <div class="row">
+      <h2>お知らせ</h2>
+      <div class="col-6">
+        <table class="table">
+          <tbody>
+            <% @news.each do |news| %>
+              <tr><%= news.created_at.strftime('%Y/%m/%d') %></tr>
+              <tr><%= link_to news.title, edit_admin_news_path(news) %></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <p>
+          <%= link_to "新規作成", new_admin_news_path, class: "btn btn-success" %>
+        </p>
+      </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="container">
+    <div class="row">
+      <h2>お知らせ</h2>
+      <div class="col-6">
+        <table class="table">
+          <tbody>
+            <% @news.each do |news| %>
+              <tr><%= news.created_at.strftime('%Y/%m/%d') %></tr>
+              <tr><%= link_to news.title, news_path(news) %></tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <p>
+          新規登録済の方はこちら<br>
+          <%= link_to "ログインする", new_user_session_path, class: "btn btn-success" %>
+        </p>
+        <p>
+          未登録の方はこちら<br>
+          <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-primary" %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
