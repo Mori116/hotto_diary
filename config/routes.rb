@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     sessions: 'admins/sessions'
   }
 
-# user側
+# ユーザ側
 scope module: :public do
   root to: 'homes#top'
   get 'homes/about' => "homes#about"
