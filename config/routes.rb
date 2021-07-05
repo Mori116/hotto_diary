@@ -17,7 +17,6 @@ scope module: :public do
     end
   end
 
-
   resources :groups do
     resources :diaries do
       resources :diary_comments, only: [:create, :destroy]
@@ -27,6 +26,8 @@ scope module: :public do
     end
     member do
       get 'join'
+      post 'join_create'
+      delete 'exit'
     end
   end
 

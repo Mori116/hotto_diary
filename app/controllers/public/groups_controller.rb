@@ -21,6 +21,7 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @owner_nickname = User.find(@group.owner_id).nickname
   end
 
   def edit
@@ -42,6 +43,25 @@ class Public::GroupsController < ApplicationController
   def join
     @group = Group.find(params[:id])
   end
+
+  def join_create
+    @group = Group.find(params[:id])
+    if @group && @group.authenticate(params[:password])
+      @group.users << current_user
+      # passwordが合っていたらグループにcurrent_userが追加される
+      redirect_to group_diaries_path
+    else
+      render "join"
+    end
+  end
+  # グループに参加する処理
+
+  def exit
+    @group = Group.find(params[:id])
+    @group.users.delete(current_user)
+    redirect_to group_path(@group)
+  end
+  # グループから抜ける処理
 
   def destroy
     @group = Group.find(params[:id])
