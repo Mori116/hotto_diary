@@ -17,11 +17,11 @@ scope module: :public do
     end
   end
 
-  resources :diaries do
-    resources :diary_comments, only: [:create, :destroy]
-  end
 
   resources :groups do
+    resources :diaries do
+      resources :diary_comments, only: [:create, :destroy]
+    end
     collection do
       get 'join_groups'
     end
