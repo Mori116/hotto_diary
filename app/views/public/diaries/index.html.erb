@@ -19,7 +19,7 @@
             <td><%= diary.title %></td>
             <td><%= diary.user.nickname %></td>
             <td><%= diary.diary_comments.count %></td>
-            <td><%= link_to "閲覧する", group_diary_path(diary) %></td>
+            <td><%= link_to "閲覧する", group_diary_path(@group.id, diary.id) %></td>
           </tr>
         <% end %>
       </tbody>
