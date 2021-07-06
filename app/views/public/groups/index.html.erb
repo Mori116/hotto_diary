@@ -1,7 +1,11 @@
 <div class="container">
     <h1>グループ検索</h1>
   <div class="row">
-    ここに検索フォームを追加する。
+
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      グループ名 <%= f.text_field :name %>
+      <%= f.submit "検索", class: "btn btn-sm btn-success" %>
+    <% end %>
 
     <h3>全グループ一覧</h3>
     <%= link_to "グループを新規作成する", new_group_path, class: "btn btn-success" %>
@@ -13,7 +17,6 @@
         <th>参加人数</th>
         <th></th>
       </thead>
-
       <tbody>
         <% @groups.each do |group| %>
           <tr>
