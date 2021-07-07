@@ -14,6 +14,16 @@ class Admin::NewsController < ApplicationController
   end
 
   def edit
+    @news = News.find(params[:id])
+  end
+
+  def update
+    @news = News.find(params[:id])
+    if @news.update(news_params)
+      redirect_to root_path
+    else
+      render "edit"
+    end
   end
 
 
