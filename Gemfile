@@ -72,3 +72,4 @@ gem 'pry-byebug'
 gem "simple_calendar", "~> 2.4"
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'rails-i18n', '~> 5.1'
