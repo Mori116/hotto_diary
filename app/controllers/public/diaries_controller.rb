@@ -29,6 +29,16 @@ class Public::DiariesController < ApplicationController
   end
 
   def edit
+    @diary = Diary.find(params[:id])
+  end
+
+  def update
+    @diary = Diary.find(params[:id])
+    if @diary.update(diary_params)
+      redirect_to group_diary_path(@diary)
+    else
+      render "edit"
+    end
   end
 
 
