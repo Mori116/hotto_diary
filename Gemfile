@@ -64,11 +64,24 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'bootstrap', '~> 4.5'
 gem 'font-awesome-sass', '~> 5.13'
+
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-gem 'kaminari','~> 1.2.1'
+
 gem 'jquery-rails'
 gem 'pry-byebug'
+
+# ページネーション
+gem 'kaminari','~> 1.2.1'
+
+# カレンダー
 gem "simple_calendar", "~> 2.4"
+
+# 日本語化
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'rails-i18n', '~> 5.1'
+
+# リーダブルコード確認
+gem 'rubocop', require: false
+gem 'rubocop-rails', require: false

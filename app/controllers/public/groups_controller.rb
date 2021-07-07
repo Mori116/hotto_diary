@@ -38,11 +38,15 @@ class Public::GroupsController < ApplicationController
   end
 
   def join_groups
+    @user = User.find(current_user.id).group_ids
+    @groups = Group.find(@user)
   end
+  # 所属グループの表示
 
   def join
     @group = Group.find(params[:id])
   end
+  # グループ参加パスワードの画面表示
 
   def join_create
     @group = Group.find(params[:id])

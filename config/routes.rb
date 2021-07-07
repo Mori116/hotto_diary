@@ -31,17 +31,17 @@ scope module: :public do
     end
   end
 
-  get '/search' => "search#search"
+  get 'search' => "searches#search"
 
 end
 
 # 管理者側
   namespace :admin do
-    resources :news, only: [:new, :create, :edit, :update]
+    resources :news, only: [:new, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update]
     resources :diaries, only: [:index, :show, :edit, :update, :destroy]
     resources :groups, only: [:index, :show, :edit, :update, :destroy]
-    get '/search' => "search#search"
+    get 'search' => "searches#search"
   end
 
 end

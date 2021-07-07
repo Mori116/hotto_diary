@@ -1,2 +1,34 @@
-<h1>Public::Diaries#new</h1>
-<p>Find me in app/views/public/diaries/new.html.erb</p>
+<div class="container">
+    <h2>新規投稿</h2>
+  <div class="row">
+
+    <%= form_with model: @diary, url: group_diaries_path, local: true do |f| %>
+      <table>
+        <tr>
+          <td>タイトル</td>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <td>画像</td>
+          <td><%= f.attachment_field :image %></td>
+        </tr>
+        <tr>
+          <td>内容</td>
+          <td><%= f.text_field :body %></td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.radio_button :status, :false, checked: true %>公開
+            <%= f.radio_button :status, :true %>非公開
+          </td>
+        </tr>
+      </table>
+        <p class="small">
+          ※非公開にするとグループ作成者のみ閲覧可能になり、<br>
+  　      グループ参加者は閲覧不可となります。
+  　     </p>
+  　   <%= f.submit "作成する", class: "btn btn-success" %>
+    <% end %>
+
+  </div>
+</div>

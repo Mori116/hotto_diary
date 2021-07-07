@@ -1,2 +1,53 @@
-<h1>Public::Diaries#index</h1>
-<p>Find me in app/views/public/diaries/index.html.erb</p>
+<div class="container">
+    <h2>日記一覧</h2>
+  <div class="row">
+
+    <%= link_to "新規投稿する", new_group_diary_path, class: "btn btn-success" %>
+
+    <table class="table">
+      <thead>
+        <th>投稿日</th>
+        <th>タイトル</th>
+        <th>投稿者名</th>
+        <th>コメント数</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @diaries.each do |diary| %>
+          <tr>
+            <td><%= diary.created_at.strftime('%Y/%m/%d') %></td>
+            <td><%= diary.title %></td>
+            <td><%= diary.user.nickname %></td>
+            <td><%= diary.diary_comments.count %></td>
+            <td><%= link_to "閲覧する", group_diary_path(@group.id, diary.id) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p><%= paginate @diaries %></p>
+
+    <h3>参加メンバー</h3>
+    <table class="table">
+      <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <td><%= member.user.nickname %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+  </div>
+    <!--カレンダー表示-->
+    <%= month_calendar(attribute: :created_at, events: @diaries) do |date, diaries| %>
+      <%= date.day %>
+
+      <% diaries.each do |diary| %>
+        <div>
+          <%= link_to diary.title, group_diary_path(@group.id, diary.id) %>
+        </div>
+      <% end %>
+
+    <% end %>
+</div>

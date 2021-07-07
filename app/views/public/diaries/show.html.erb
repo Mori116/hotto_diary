@@ -1,2 +1,26 @@
-<h1>Public::Diaries#show</h1>
-<p>Find me in app/views/public/diaries/show.html.erb</p>
+<div class="container">
+    <h2>日記詳細</h2>
+  <div class="row">
+    <%= @diary.title %>
+    <%= attachment_image_tag @diary, :image, size: "250x200", fallback: "no_image.jpg" %>
+    <%= @diary.body %>
+
+    <% if @diary.user == current_user %>
+      <p><%= link_to "編集する", edit_group_diary_path, class: "btn btn-primary" %></p>
+      <p><%= link_to "削除する", group_diary_path, method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %></p>
+     <% end %>
+
+    <% @comments.each do |comment| %>
+      <%= comment.comment %>
+
+      <% if diary_comment.user == current_user %>
+        <%= link_to "削除する", group_diary_diary_comment_path(comment.diary, comment), method: :delete, class: "btn btn-danger" %>
+      <% end %>
+    <% end %>
+
+    <%= form_with(model:[@diary, @comment_new]), url: group_diary_diary_comments_path, local: true do |f| %>
+      <%= f.text_area :comment %>
+      <%= f.submit "コメントする", class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+</div>
