@@ -5,11 +5,15 @@
     <%= attachment_image_tag @diary, :image, size: "250x200", fallback: "no_image.jpg" %>
     <%= @diary.body %>
 
+    <% if @diary.user == current_user %>
+      <p><%= link_to "編集する", edit_group_diary_path, class: "btn btn-primary" %></p>
+     <% end %>
+
     <% @comments.each do |comment| %>
       <%= comment.comment %>
 
       <% if diary_comment.user == current_user %>
-        <%= link_to "削除", group_diary_diary_comment_path(comment.diary, comment), method: :delete, class: "btn btn-danger" %>
+        <%= link_to "削除する", group_diary_diary_comment_path(comment.diary, comment), method: :delete, class: "btn btn-danger" %>
       <% end %>
     <% end %>
 
