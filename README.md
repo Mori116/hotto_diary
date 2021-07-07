@@ -73,3 +73,12 @@ _UI Flows_<br>
 - コメント機能の非同期通信
 - Action Mailer
 - Rubocop
+
+## 使用素材
+
+- PAKUTASO<br>
+https://www.pakutaso.com/
+- pixabay<br>
+https://pixabay.com/ja/
+- Subtle Patterns<br>
+https://www.toptal.com/designers/subtlepatterns/
