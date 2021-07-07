@@ -1,5 +1,7 @@
 class Admin::GroupsController < ApplicationController
+
   def index
+    @groups = Group.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
@@ -7,4 +9,5 @@ class Admin::GroupsController < ApplicationController
 
   def edit
   end
+
 end
