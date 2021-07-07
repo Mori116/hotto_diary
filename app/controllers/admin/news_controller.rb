@@ -26,6 +26,12 @@ class Admin::NewsController < ApplicationController
     end
   end
 
+  def destroy
+    @news = News.find(params[:id])
+    @news.destroy
+    redirect_to root_path
+  end
+
 
   private
 
