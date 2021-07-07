@@ -9,4 +9,9 @@ class Group < ApplicationRecord
   validates :name, presence: true
 
   attachment :image
+
+  def owner
+    User.find(self.owner_id)
+  end
+
 end

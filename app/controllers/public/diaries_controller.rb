@@ -25,7 +25,7 @@ class Public::DiariesController < ApplicationController
   def show
     @diary = Diary.find(params[:id])
     @comment_new = DiaryComment.new
-    @comments = @diary.diary_comments.all
+    @diary_comments = @diary.diary_comments
   end
 
   def edit

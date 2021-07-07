@@ -1,7 +1,7 @@
 class Public::DiaryCommentsController < ApplicationController
 
   def create
-    @diary = Diary.find(params[:id])
+    @diary = Diary.find(params[:diary_id])
     @comment_new = current_user.diary_comments.new(diary_comment_params)
     @comment_new.diary_id = @diary.id
     if @comment_new.save
@@ -12,8 +12,8 @@ class Public::DiaryCommentsController < ApplicationController
   end
 
   def destroy
-    @diary = Diary.find(params[:id])
-    @comment = DiaryComments.find_by(params[:id], diary_id: @diary)
+    @diary = Diary.find(params[:diary_id])
+    @comment = DiaryComment.find_by(id: params[:id], diary_id: @diary.id)
     @comment.destroy
   end
 

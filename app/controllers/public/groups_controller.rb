@@ -21,7 +21,6 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @owner_nickname = User.find(@group.owner_id).nickname
   end
 
   def edit
