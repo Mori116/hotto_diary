@@ -38,9 +38,16 @@ end
 # 管理者側
   namespace :admin do
     resources :news, only: [:new, :create, :edit, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :diaries, only: [:index, :show, :edit, :update, :destroy]
-    resources :groups, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :show, :edit, :update] do
+      member do
+        get 'join_groups'
+      end
+    end
+
+    resources :groups, only: [:index, :show, :edit, :update, :destroy] do
+     resources :diaries, only: [:index, :show, :edit, :update, :destroy]
+    end
+
     get 'search' => "searches#search"
   end
 
