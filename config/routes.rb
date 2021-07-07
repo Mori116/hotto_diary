@@ -41,7 +41,7 @@ end
     resources :users, only: [:index, :show, :edit, :update]
     resources :diaries, only: [:index, :show, :edit, :update, :destroy]
     resources :groups, only: [:index, :show, :edit, :update, :destroy]
-    get '/search' => "searches#search"
+    get 'search' => "searches#search"
   end
 
 end
