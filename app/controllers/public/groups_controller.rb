@@ -37,12 +37,6 @@ class Public::GroupsController < ApplicationController
     end
   end
 
-  def join_groups
-    @user = User.find(current_user.id).group_ids
-    @groups = Group.find(@user)
-  end
-  # 所属グループの表示
-
   def join
     @group = Group.find(params[:id])
   end
