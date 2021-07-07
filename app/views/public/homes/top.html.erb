@@ -23,6 +23,7 @@
               </tr>
             <% end %>
           </tbody>
+          <%= paginate @news %>
         </table>
       </div>
     </div>
@@ -40,8 +41,10 @@
               <tr><%= news.body %></tr>
             <% end %>
           </tbody>
+          <%= paginate @news %>
         </table>
       </div>
+
       <div class="col-6">
         <p>
           新規登録済の方はこちら<br>
