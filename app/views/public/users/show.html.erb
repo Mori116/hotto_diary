@@ -6,11 +6,11 @@
       <table>
         <tr>
           <th>お名前</th>
-          <td><%= @user.last_name %> <%= @user.first_name %></td>
+          <td><%= @user.full_name %></td>
         </tr>
         <tr>
           <th>フリガナ</th>
-          <td><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
+          <td><%= @user.last_name_kana %><%= @user.first_name_kana %></td>
         </tr>
         <tr>
           <th>ニックネーム（あだ名）</th>
