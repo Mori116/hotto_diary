@@ -23,8 +23,9 @@ class Public::DiariesController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:group_id])
-    @diary = Diary.find_by(id: params[:id], group_id: @group)
+    @diary = Diary.find(params[:id])
+    @comment_new = DiaryComment.new
+    @comments = @diary.diary_comments.all
   end
 
   def edit
