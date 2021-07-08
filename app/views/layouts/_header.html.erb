@@ -35,6 +35,9 @@
                <%= link_to 'グループ一覧', admin_groups_path, class: 'nav-link text-light fas fa-book-open' %>
             </li>
             <li class="nav-item">
+               <%= link_to '日記一覧', diaries_admin_groups_path, class: 'nav-link text-light fas fa-book-open' %>
+            </li>
+            <li class="nav-item">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light fas fa-sign-out-alt' %>
             </li>
 
