@@ -5,6 +5,12 @@ class Public::UsersController < ApplicationController
     # ここに通知の変数記述する
   end
 
+  def join_groups
+    @user = User.find(params[:id]).group_ids
+    @groups = Group.find(@user)
+  end
+  # 所属グループの表示
+
   def edit
     @user = User.find(params[:id])
   end

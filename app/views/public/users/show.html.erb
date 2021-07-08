@@ -6,11 +6,11 @@
       <table>
         <tr>
           <th>お名前</th>
-          <td><%= @user.last_name %> <%= @user.first_name %></td>
+          <td><%= @user.full_name %></td>
         </tr>
         <tr>
           <th>フリガナ</th>
-          <td><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
+          <td><%= @user.last_name_kana %><%= @user.first_name_kana %></td>
         </tr>
         <tr>
           <th>ニックネーム（あだ名）</th>
@@ -33,5 +33,5 @@
       ここに通知一覧を表示する
     </div>
   </div>
-    <%= link_to "交換日記へ", join_groups_groups_path, class: "btn btn-primary" %>
+    <%= link_to "交換日記へ", join_groups_user_path(@user.id), class: "btn btn-primary" %>
 </div>

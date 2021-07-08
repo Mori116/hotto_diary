@@ -21,7 +21,6 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @owner_nickname = User.find(@group.owner_id).nickname
   end
 
   def edit
@@ -36,12 +35,6 @@ class Public::GroupsController < ApplicationController
       render "edit"
     end
   end
-
-  def join_groups
-    @user = User.find(current_user.id).group_ids
-    @groups = Group.find(@user)
-  end
-  # 所属グループの表示
 
   def join
     @group = Group.find(params[:id])

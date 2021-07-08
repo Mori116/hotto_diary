@@ -1,2 +1,25 @@
-<h1>Admin::Diaries#show</h1>
-<p>Find me in app/views/admin/diaries/show.html.erb</p>
+<div class="container">
+    <h2>日記詳細</h2>
+
+  <div class="row">
+    <%= @diary.title %>
+  </div>
+
+  <div class="row">
+    <%= attachment_image_tag @diary, :image, size: "250x200", fallback: "no_image.jpg" %>
+    <%= @diary.body %>
+  </div>
+
+  <div class="row">
+      <p><%= link_to "編集する", edit_admin_group_diary_path(@group.id, @diary.id), class: "btn btn-primary" %></p>
+      <p><%= link_to "削除する", admin_group_diary_path(@group.id, @diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %></p>
+  </div>
+
+  <div class="row">
+    <% @diary_comments.each do |diary_comment| %>
+      <%= diary_comment.comment %>
+      <%= link_to "削除する", admin_group_diary_diary_comment_path({group_id: @group, diary_id: @diary.id, id: diary_comment.id}), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+
+</div>
