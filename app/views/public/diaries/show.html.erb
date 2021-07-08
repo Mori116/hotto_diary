@@ -12,8 +12,8 @@
 
   <div class="row">
     <% if @diary.user == current_user %>
-      <p><%= link_to "編集する", edit_group_diary_path, class: "btn btn-primary" %></p>
-      <p><%= link_to "削除する", group_diary_path, method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %></p>
+      <p><%= link_to "編集する", edit_group_diary_path(@group.id, @diary.id), class: "btn btn-primary" %></p>
+      <p><%= link_to "削除する", group_diary_path(@group.id, @diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %></p>
     <% end %>
   </div>
 
@@ -21,13 +21,13 @@
     <% @diary_comments.each do |diary_comment| %>
       <%= diary_comment.comment %>
       <% if diary_comment.user == current_user %>
-        <%= link_to "削除する", group_diary_diary_comment_path(diary_comment.diary, diary_comment), method: :delete, class: "btn btn-danger" %>
+        <%= link_to "削除する", group_diary_diary_comment_path({group_id: @group, diary_id: @diary.id, id: diary_comment.id}), method: :delete, class: "btn btn-danger" %>
       <% end %>
     <% end %>
   </div>
 
   <div class="row">
-    <%= form_with(model: [@diary, @comment_new], url: group_diary_diary_comments_path({diary_id: @diary.id}), local: true) do |f| %>
+    <%= form_with(model: [@group, @diary, @comment_new], url: group_diary_diary_comments_path({group_id: @group, diary_id: @diary.id}), local: true) do |f| %>
       <%= f.text_area :comment %>
       <%= f.submit "コメントする", class: "btn btn-secondary" %>
     <% end %>

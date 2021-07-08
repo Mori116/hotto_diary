@@ -23,6 +23,7 @@ class Public::DiariesController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
     @comment_new = DiaryComment.new
     @diary_comments = @diary.diary_comments
@@ -42,6 +43,7 @@ class Public::DiariesController < ApplicationController
   end
 
   def destroy
+    @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
     @diary.destroy
     redirect_to group_diaries_path

@@ -1,6 +1,7 @@
 class Public::DiaryCommentsController < ApplicationController
 
   def create
+    @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:diary_id])
     @comment_new = current_user.diary_comments.new(diary_comment_params)
     @comment_new.diary_id = @diary.id
@@ -12,9 +13,11 @@ class Public::DiaryCommentsController < ApplicationController
   end
 
   def destroy
+    @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:diary_id])
     @comment = DiaryComment.find_by(id: params[:id], diary_id: @diary.id)
     @comment.destroy
+    redirect_to request.referer
   end
 
 

@@ -7,6 +7,7 @@ class Admin::DiariesController < ApplicationController
   end
 
   def show
+    @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
     @diary_comments = @diary.diary_comments
   end
