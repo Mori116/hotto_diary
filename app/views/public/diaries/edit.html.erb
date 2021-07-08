@@ -2,7 +2,7 @@
     <h2>日記編集</h2>
   <div class="row">
 
-    <%= form_with model: @diary, url: group_diary_path, local: true do |f| %>
+    <%= form_with(model: [@group, @diary], url: group_diary_path({group_id: @group.id, diary_id: @diary.id}), local: true) do |f| %>
       <table>
         <tr>
           <td>タイトル</td>

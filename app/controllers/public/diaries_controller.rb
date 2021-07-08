@@ -14,7 +14,7 @@ class Public::DiariesController < ApplicationController
     @group = Group.find(params[:group_id])
     @diary = Diary.new(diary_params)
     @diary.user_id = current_user.id
-    @diary.group_id = Group.find(params[:group_id]).id
+    @diary.group_id = @group.id
     if @diary.save
       redirect_to group_diary_path(@group.id, @diary.id)
     else
@@ -30,13 +30,15 @@ class Public::DiariesController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
   end
 
   def update
+    @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
     if @diary.update(diary_params)
-      redirect_to group_diary_path(@diary)
+      redirect_to group_diary_path(@group.id, @diary.id)
     else
       render "edit"
     end
