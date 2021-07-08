@@ -43,7 +43,9 @@ end
     end
 
     resources :groups, only: [:index, :show, :edit, :update, :destroy] do
-     resources :diaries, only: [:index, :show, :edit, :update, :destroy]
+     resources :diaries, only: [:index, :show, :edit, :update, :destroy] do
+      resources :diary_comments, only: [:destroy]
+    end
     end
 
     get 'search' => "searches#search"

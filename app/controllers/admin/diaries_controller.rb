@@ -7,6 +7,8 @@ class Admin::DiariesController < ApplicationController
   end
 
   def show
+    @diary = Diary.find(params[:id])
+    @diary_comments = @diary.diary_comments
   end
 
   def edit
