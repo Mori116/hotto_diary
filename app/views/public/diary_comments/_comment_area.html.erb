@@ -1,0 +1,6 @@
+<% diary_comments.each do |diary_comment| %>
+  <%= diary_comment.comment %>
+  <% if diary_comment.user == current_user %>
+    <%= link_to "削除する", group_diary_diary_comment_path({group_id: group.id, diary_id: diary.id, id: diary_comment.id}), method: :delete, class: "btn btn-danger", remote: true %>
+  <% end %>
+<% end %>

@@ -18,16 +18,13 @@
   </div>
 
   <div class="row">
-    <% @diary_comments.each do |diary_comment| %>
-      <%= diary_comment.comment %>
-      <% if diary_comment.user == current_user %>
-        <%= link_to "削除する", group_diary_diary_comment_path({group_id: @group, diary_id: @diary.id, id: diary_comment.id}), method: :delete, class: "btn btn-danger" %>
-      <% end %>
-    <% end %>
+    <div id="diary-comment">
+      <%= render 'public/diary_comments/comment_area', diary_comments: @diary_comments, group: @group, diary: @diary  %>
+    </div>
   </div>
 
-  <div class="row">
-    <%= form_with(model: [@group, @diary, @comment_new], url: group_diary_diary_comments_path({group_id: @group, diary_id: @diary.id}), local: true) do |f| %>
+  <div class="row comment-error">
+    <%= form_with(model: [@group, @diary, @comment_new], url: group_diary_diary_comments_path({group_id: @group, diary_id: @diary.id})) do |f| %>
       <%= f.text_area :comment %>
       <%= f.submit "コメントする", class: "btn btn-secondary" %>
     <% end %>

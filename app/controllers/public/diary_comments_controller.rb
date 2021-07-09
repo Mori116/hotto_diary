@@ -5,19 +5,16 @@ class Public::DiaryCommentsController < ApplicationController
     @diary = Diary.find(params[:diary_id])
     @comment_new = current_user.diary_comments.new(diary_comment_params)
     @comment_new.diary_id = @diary.id
-    if @comment_new.save
-      redirect_to request.referer
-    else
-      render "show"
+    unless @comment_new.save
+      render "error"
     end
   end
 
   def destroy
     @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:diary_id])
-    @comment = DiaryComment.find_by(id: params[:id], diary_id: @diary.id)
-    @comment.destroy
-    redirect_to request.referer
+    comment = DiaryComment.find_by(id: params[:id], diary_id: @diary.id)
+    comment.destroy
   end
 
 
