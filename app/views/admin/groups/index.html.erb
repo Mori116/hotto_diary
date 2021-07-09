@@ -2,7 +2,12 @@
     <h1>グループ一覧</h1>
   <div class="row">
 
-    <p>ここに検索フォーム</p>
+    <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+      <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
+      <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
+      <%= f.text_field 'search[value]' %>
+      <%= f.submit "検索", class: "btn btn-sm btn-success" %>
+    <% end %>
 
     <h3>全グループ一覧</h3>
     <table class="table">
