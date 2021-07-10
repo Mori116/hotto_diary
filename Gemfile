@@ -85,3 +85,10 @@ gem 'rails-i18n', '~> 5.1'
 # リーダブルコード確認
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
+
+gem 'dotenv-rails'
+# 環境変数を管理する
+group :production do
+  gem 'mysql2'
+end
+# 本番環境でMySQLを使用する
