@@ -1,5 +1,7 @@
 class Public::SearchesController < ApplicationController
 
+  before_action :authenticate_user!
+
   def search
     if params[:name].present?
       @groups = Group.where("name LIKE ?", "%#{params[:name]}%").page(params[:page]).per(10)
