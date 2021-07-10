@@ -1,5 +1,7 @@
 class Admin::NewsController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def new
     @news = News.new
   end

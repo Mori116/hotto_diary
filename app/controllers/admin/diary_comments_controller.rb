@@ -1,5 +1,7 @@
 class Admin::DiaryCommentsController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def destroy
     @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:diary_id])
