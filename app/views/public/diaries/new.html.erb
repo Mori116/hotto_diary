@@ -3,6 +3,7 @@
   <div class="row">
 
     <%= form_with model: @diary, url: group_diaries_path, local: true do |f| %>
+    <%= render 'layouts/errors', obj: @diary %>
       <table>
         <tr>
           <td>タイトル</td>

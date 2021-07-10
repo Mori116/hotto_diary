@@ -9,6 +9,7 @@
       </p>
 
       <%= form_with model: @group, url: join_create_group_path, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @group %>
         <div class="field">
           <%= f.label :password, "パスワード" %><br />
           <%= f.password_field :password, autocomplete: "current-password" %>

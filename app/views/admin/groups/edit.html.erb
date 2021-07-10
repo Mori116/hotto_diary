@@ -4,6 +4,7 @@
     <div class="mx-auto">
 
       <%= form_with model: @group, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @group %>
         <table>
           <tr>
             <td><%= f.label :name, "グループ名" %></td>

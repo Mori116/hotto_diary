@@ -4,6 +4,7 @@
     <div class="mx-auto">
 
       <%= form_with model: @news, url: admin_news_index_path, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @news %>
         お知らせ内容 <%= f.text_field :body %>
         <p class="offset-5 mt-3">
           <%= f.submit "投稿する", class: "btn btn-success" %>

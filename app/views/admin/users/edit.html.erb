@@ -4,6 +4,7 @@
     <div class="mx-auto">
 
       <%= form_with model: @user, url: admin_user_path, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @user %>
 
         <div><%= f.label "名前" %></div>
         <div class="field">
