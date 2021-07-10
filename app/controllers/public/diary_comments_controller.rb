@@ -8,11 +8,14 @@ class Public::DiaryCommentsController < ApplicationController
     unless @comment_new.save
       render "error"
     end
+    @diary_comments = @diary.diary_comments
+    # コメント全体を置き換えるような動作のため、createアクションでも本コードの記述が必要
   end
 
   def destroy
     @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:diary_id])
+    @diary_comments = @diary.diary_comments
     comment = DiaryComment.find_by(id: params[:id], diary_id: @diary.id)
     comment.destroy
   end

@@ -26,7 +26,7 @@ class Public::DiariesController < ApplicationController
     @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
     @comment_new = DiaryComment.new
-    @diary_comments = @diary.diary_comments.order(created_at: :desc)
+    @diary_comments = @diary.diary_comments
   end
 
   def edit

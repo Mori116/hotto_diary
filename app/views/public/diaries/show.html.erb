@@ -24,9 +24,10 @@
   </div>
 
   <div class="row comment-error">
+    <%= render 'layouts/errors', obj: @comment_new %>
+  </div>
     <%= form_with(model: [@group, @diary, @comment_new], url: group_diary_diary_comments_path({group_id: @group, diary_id: @diary.id})) do |f| %>
       <%= f.text_area :comment %>
       <%= f.submit "コメントする", class: "btn btn-secondary" %>
     <% end %>
-  </div>
 </div>

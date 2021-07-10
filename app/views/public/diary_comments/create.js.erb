@@ -1,3 +1,3 @@
-$("#diary-comment").html("<%= j(render 'diary_comments/comment_area', diary_comments: @diary_comments, group: @group, diary: @diary) %>")
+$("#diary-comment").html("<%= j(render 'public/diary_comments/comment_area', diary_comments: @diary_comments, group: @group, diary: @diary) %>")
 $("#diary_comment_comment").val("");
 <!--コメント投稿後フォーム内を空にする-->
