@@ -43,11 +43,12 @@ class Public::GroupsController < ApplicationController
 
   def join_create
     @group = Group.find(params[:id])
-    if @group && @group.authenticate(params[:password])
+    if @group && @group.authenticate(params[:group][:password])
       @group.users << current_user
       # passwordが合っていたらグループにcurrent_userが追加される
-      redirect_to group_diaries_path
+      redirect_to group_diaries_path(@group)
     else
+      flash[:alert] = "パスワードが正しくありません。"
       render "join"
     end
   end

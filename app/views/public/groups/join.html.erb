@@ -1,5 +1,7 @@
 <div class="container">
   <h1 class="my-5">グループ参加</h1>
+
+  グループ名：<%= @group.name %>
   <div class="row">
     <div class="mx-auto">
       <p><strong>グループのパスワードをご入力ください。</strong></p>
@@ -8,11 +10,11 @@
       　ご不明な場合は、グループ作成者へお伺いください。
       </p>
 
-      <%= form_with model: @group, url: join_create_group_path, local: true do |f| %>
-      <%= render 'layouts/errors', obj: @group %>
+      <%= form_with model: @group, url: join_create_group_path, method: :post, local: true do |f| %>
+      <p id="alert"><%= alert %></p>
         <div class="field">
           <%= f.label :password, "パスワード" %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <%= f.password_field :password %>
         </div>
 
         <div class="actions">
