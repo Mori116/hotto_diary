@@ -4,30 +4,23 @@
     <div class="mx-auto">
 
       <%= form_with model: @group, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @group %>
         <table>
           <tr>
-            <td>
-              <%= f.label :name, "グループ名" %>
-              <%= f.text_field :name %>
-            </td>
+            <td><%= f.label :name, "グループ名" %></td>
+            <td><%= f.text_field :name %></td>
           </tr>
           <tr>
-            <td>
-              <%= f.label :image, 'グループ画像' %>
-              <%= f.attachment_field :image %>
-            </td>
+            <td><%= f.label :image, 'グループ画像' %></td>
+            <td><%= f.attachment_field :image %></td>
           </tr>
           <tr>
-            <td>
-              <%= f.label :password, "パスワード（6文字以上）" %>
-              <%= f.password_field :password, autocomplete: "new-password" %>
-            </td>
+            <td><%= f.label :password, "パスワード（6文字以上）" %></td>
+            <td><%= f.password_field :password, autocomplete: "new-password" %></td>
           </tr>
           <tr>
-            <td>
-              <%= f.label :password_confirmation, "パスワード（確認用）" %>
-              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            </td>
+            <td><%= f.label :password_confirmation, "パスワード（確認用）" %></td>
+            <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
           </tr>
         </table>
 

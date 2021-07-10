@@ -3,6 +3,7 @@
   <div class="row">
     <div class="mx-auto">
       <%= form_with model: @user, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @user %>
 
         <div><%= f.label "お名前" %></div>
         <div class="field">
