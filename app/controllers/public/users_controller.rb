@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
     # ここに通知の変数記述する
