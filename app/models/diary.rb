@@ -8,4 +8,5 @@ class Diary < ApplicationRecord
   validates :body, presence: true, length: { maximum: 800 }
 
   attachment :image
+
 end

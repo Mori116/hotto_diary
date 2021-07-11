@@ -4,7 +4,12 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # ここに通知の変数記述する
+    @notifications = current_user.passive_notifications.order(created_at: :desc).page(params[:page]).per(10)
+    # current_userの投稿に紐づいた通知一覧
+    @notifications.where(checked: false).each do |notification|
+      notification.update_attributes(checked: true)
+    end
+    # @notificationの中でまだ確認していない(indexに一度も遷移していない)通知のみ
   end
 
   def join_groups
