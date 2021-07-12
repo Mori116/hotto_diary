@@ -1,0 +1,29 @@
+<div class="row">
+  <%= diary.title %>
+</div>
+
+<div class="row">
+  <%= attachment_image_tag diary, :image, size: "250x200", fallback: "no_image.jpg" %>
+  <%= diary.body %>
+</div>
+
+<div class="row">
+  <% if diary.user == current_user %>
+    <p><%= link_to "編集する", edit_group_diary_path(group.id, diary.id), class: "btn btn-primary" %></p>
+    <p><%= link_to "削除する", group_diary_path(group.id, diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %></p>
+  <% end %>
+</div>
+
+<div class="row">
+  <div id="diary-comment">
+    <%= render 'public/diary_comments/comment_area', diary_comments: diary_comments, group: group, diary: diary  %>
+  </div>
+</div>
+
+<div class="row comment-error">
+  <%= render 'layouts/errors', obj: comment_new %>
+</div>
+  <%= form_with(model: [group, diary, comment_new], url: group_diary_diary_comments_path({group_id: group, diary_id: diary.id})) do |f| %>
+    <%= f.text_area :comment %>
+    <%= f.submit "コメントする", class: "btn btn-secondary" %>
+  <% end %>

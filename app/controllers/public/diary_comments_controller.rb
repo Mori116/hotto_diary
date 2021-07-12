@@ -7,7 +7,9 @@ class Public::DiaryCommentsController < ApplicationController
     @diary = Diary.find(params[:diary_id])
     @comment_new = current_user.diary_comments.new(diary_comment_params)
     @comment_new.diary_id = @diary.id
-    unless @comment_new.save
+    if @comment_new.save
+      @comment_new.create_notification_comment!(current_user, @comment_new.id)
+    else
       render "error"
     end
     @diary_comments = @diary.diary_comments

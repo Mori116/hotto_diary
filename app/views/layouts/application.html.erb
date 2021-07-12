@@ -8,25 +8,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <div id='container'>
+      <%= render 'layouts/header' %>
 
-    <main>
-      <p id="notice"><%= notice %></p>
-      <%= yield %>
-    </main>
-
-    <fotter>
-      <div class="container">
-        <div class="row">
-          <div class="mx-auto">
-            ©2021 MN
-          </div>
+      <main>
+        <div id='contents'>
+          <p id="notice"><%= notice %></p>
+          <%= yield %>
         </div>
-      </div>
-    </fotter>
+      </main>
+
+      <footer id="footer" class="bg-light">
+        <div class='container'>
+            <p class="text-center">©2021 HottoDiary</p>
+        </div>
+      </footer>
+
+    </div>
   </body>
 
 </html>

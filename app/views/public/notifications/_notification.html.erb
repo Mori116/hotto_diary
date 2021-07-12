@@ -1,0 +1,15 @@
+<% notifications.each do |notification| %>
+
+<% visitor = notification.visitor %>
+<% diary = notification.diary %>
+<% group = notification.diary.group %>
+
+<div class="user-view clearfix ">
+  <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+  <br>
+  <% if !@comment.nil? %>
+    <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
+  <% end %>
+</div>
+
+<% end %>
