@@ -41,6 +41,7 @@ class Public::UsersController < ApplicationController
     # ユーザステータスを有効から退会にする
     reset_session
     # すべてのセッション情報を削除
+    flash[:alert] = "退会しました。"
     redirect_to root_path
   end
 
