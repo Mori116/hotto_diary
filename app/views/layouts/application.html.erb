@@ -12,18 +12,23 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
+    <div id='container'>
+      <%= render 'layouts/header' %>
 
-    <main>
-      <p id="notice"><%= notice %></p>
-      <%= yield %>
-    </main>
+      <main>
+        <div id='contents'>
+          <p id="notice"><%= notice %></p>
+          <%= yield %>
+        </div>
+      </main>
 
-    <footer class="bg-light">
-      <div class='container'>
-          <p class="text-center">©2021 HottoDiary</p>
-      </div>
-    </footer>
+      <footer id="footer" class="bg-light">
+        <div class='container'>
+            <p class="text-center">©2021 HottoDiary</p>
+        </div>
+      </footer>
+
+    </div>
   </body>
 
 </html>

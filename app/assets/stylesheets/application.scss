@@ -33,9 +33,21 @@ nav {
   border-bottom: 1px solid #DDDDDD;
 }
 
-footer {
-  position: absolute;
-  bottom: 0px;
+#contents {
+  padding-bottom: 100px;
+}
+
+#container {
+  width: 100%;
+  position: relative;
+  height: auto !important;
+  height: 100%;
+  min-height: 100%;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
   padding-top: 15px;
   width: 100%;
   height: 60px;
@@ -71,6 +83,7 @@ footer {
 body {
   font-family: 'Kiwi Maru', serif;
   background-image: image-url('lined_paper.png');
+  height: 100%;
 }
 
 .btn-orange {

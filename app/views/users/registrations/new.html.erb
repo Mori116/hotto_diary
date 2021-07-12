@@ -1,52 +1,59 @@
 <div class="container">
   <h2>新規登録</h2>
   <div class="row">
-    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-      <%= render "users/shared/error_messages", resource: resource %>
+    <div class="mx-auto mt-5">
 
-      <div><%= f.label "お名前" %></div>
-      <div class="field">
-        <%= f.label :last_name, "(姓)" %>
-        <%= f.text_field :last_name, autofocus: true %>
-        <%= f.label :first_name, "(名)" %>
-        <%= f.text_field :first_name, autofocus: true %>
-      </div>
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <%= f.label "お名前" %>
+                <%= f.label :last_name, "(姓)" %>
+              </td>
+              <td><%= f.text_field :last_name, autofocus: true, :placeholder => "例）令和" %></td>
+              <td><%= f.label :first_name, "(名)", class: "ml-2" %></td>
+              <td><%= f.text_field :first_name, autofocus: true, :placeholder => "例）太郎" %></td>
+            </tr>
+            <tr>
+              <td>
+                <%= f.label "フリガナ" %>
+                <%= f.label :last_name_kana, "(セイ)" %>
+              </td>
+              <td><%= f.text_field :last_name_kana, autofocus: true, :placeholder => "例）レイワ" %></td>
+              <td><%= f.label :first_name_kana, "(メイ)", class: "ml-2" %></td>
+              <td><%= f.text_field :first_name_kana, autofocus: true, :placeholder => "例）タロウ" %></td>
+            </tr>
+            <tr>
+              <td> <%= f.label :nickname, "ニックネーム（あだ名）" %></td>
+              <td><%= f.text_field :nickname, autofocus: true, :placeholder => "例）タロー" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :email, "メールアドレス" %></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "例）sample@gmail.com" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :password, "パスワード（6文字以上）" %></td>
+              <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :password_confirmation, "パスワード（確認用）" %></td>
+              <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+            </tr>
+          </tbody>
+        </table>
 
-      <div><%= f.label "フリガナ" %></div>
-      <div class="field">
-        <%= f.label :last_name_kana, "(セイ)" %>
-        <%= f.text_field :last_name_kana, autofocus: true %>
-        <%= f.label :first_name_kana, "(メイ)" %>
-        <%= f.text_field :first_name_kana, autofocus: true %>
-      </div>
+        <div class="offset-4 mt-3">
+          <%= f.submit "新規登録", class: "btn btn-orange px-5" %>
+        </div>
+      <% end %>
 
-      <div class="field">
-        <%= f.label :nickname, "ニックネーム（あだ名）" %>
-        <%= f.text_field :nickname, autofocus: true %>
-      </div>
+      <p class="mt-5">
+        既に登録済みの方<br>
+        <%= link_to "こちら", user_session_path %> からログインしてください。
+      </p>
 
-      <div class="field">
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password, "パスワード（6文字以上）" %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation, "パスワード（確認用）" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "新規登録", class: "btn btn-success" %>
-      </div>
-    <% end %>
+    </div>
   </div>
-    <p>
-      既に登録済みの方<br>
-      <%= link_to "こちら", user_session_path %> からログインしてください。
-    </p>
 </div>
