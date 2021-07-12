@@ -25,6 +25,6 @@
 
     </div>
   </div>
-    <%= link_to "編集する", edit_admin_group_path(@group), class: "btn btn-success" %>
+    <%= link_to "削除する", admin_group_path(@group), method: :delete, class: 'btn btn-danger', "data-confirm" => "本当に消しますか？" %><br>
     <%= link_to "交換日記へ", admin_group_diaries_path(@group), class: "btn btn-primary" %>
 </div>

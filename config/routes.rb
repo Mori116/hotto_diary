@@ -45,13 +45,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :groups, only: [:index, :show, :edit, :update, :destroy] do
+    resources :groups, only: [:index, :show, :destroy] do
       collection do
         get 'diaries'
       end
-      resources :diaries, only: [:index, :show, :edit, :update, :destroy] do
-        resources :diary_comments, only: [:destroy]
-      end
+      resources :diaries, only: [:index, :show]
     end
 
     get 'search' => "searches#search"
