@@ -24,18 +24,34 @@
   box-sizing: border-box;
 }
 
+nav {
+  height: 60px;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  padding-top: 15px;
+  width: 100%;
+  height: 60px;
+  border-top: 1px solid #DDDDDD;
+}
+
 .top-visual {
   display: flex;
 }
 
 .top-title {
-  margin-top: 150px;
-  margin-left: 150px;
+  text-align: center;
+  background-color: rgba(255,255,255,0.6);
+  color: black;
+  margin-top: 200px;
+  font-size: 40px;
 }
 
 .main-visual {
-  margin-left: 10%;
-  width: 60%;
+  width: 100%;
   height: 520px;
   background-image: image-url('book.jpg');
   background-size: cover;
@@ -46,4 +62,20 @@
   width: 100%;
   height: 100%;
   background-image: image-url('book3.jpg');
+}
+
+body {
+  font-family: 'Kiwi Maru', serif;
+  background-image: image-url('lined_paper.png');
+}
+
+.btn-black {
+  background-color: white;
+  border-color: black;
+}
+
+.btn-black:hover {
+  color: #fff;
+  background-color: #FF8856;
+  border-color: black;
 }
