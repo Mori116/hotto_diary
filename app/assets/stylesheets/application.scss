@@ -28,12 +28,19 @@
   color: red;
 }
 
-nav {
+#header {
+  width: 100%;
+  position: fixed;
+  top: 0;
   height: 60px;
+}
+
+nav {
   border-bottom: 1px solid #DDDDDD;
 }
 
 #contents {
+  margin-top: 100px;
   padding-bottom: 100px;
 }
 
