@@ -8,7 +8,7 @@ module Public::NotificationsHelper
       case notification.action
         when "comment" then
           @comment = DiaryComment.find_by(id: @visiter_comment)&.comment
-          tag.a(@visitor.nickname, style: "font-weight: bold;")+"が"+tag.a('あなたの投稿', href: group_diary_path(notification.diary.group_id, notification.diary_id), style: "font-weight: bold;")+"にコメントしました"
+          tag.a(@visitor.nickname, style: "font-weight: bold;")+"が"+tag.a('あなたの日記', href: group_diary_path(notification.diary.group_id, notification.diary_id), style: "font-weight: bold;")+"にコメントしました"
       end
     end
 
