@@ -35,12 +35,9 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def withdraw
+  def destroy
     @user = User.find(current_user.id)
-    @user.update(is_deleted: true)
-    # ユーザステータスを有効から退会にする
-    reset_session
-    # すべてのセッション情報を削除
+    @user.destroy
     flash[:alert] = "退会しました。"
     redirect_to root_path
   end

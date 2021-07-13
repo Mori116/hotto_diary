@@ -13,10 +13,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'homes/about' => "homes#about"
 
-    resources :users, only: [:show, :edit, :update] do
+    resources :users, only: [:show, :edit, :update, :destroy] do
       member do
         get 'quit'
-        patch 'withdraw'
         get 'join_groups'
       end
     end
@@ -39,7 +38,7 @@ Rails.application.routes.draw do
   # 管理者側
   namespace :admin do
     resources :news, only: [:new, :create, :edit, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update] do
+    resources :users, only: [:index, :show, :edit, :update, :destroy] do
       member do
         get 'join_groups'
       end
