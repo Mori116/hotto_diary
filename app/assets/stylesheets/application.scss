@@ -29,13 +29,14 @@
 }
 
 #header {
-  width: 100%;
   position: fixed;
   top: 0;
-  height: 60px;
+  width: 100%;
+  z-index: 500;
 }
 
 nav {
+  height: 60px;
   border-bottom: 1px solid #DDDDDD;
 }
 
@@ -47,9 +48,7 @@ nav {
 #container {
   width: 100%;
   position: relative;
-  height: auto !important;
   height: 100%;
-  min-height: 100%;
 }
 
 #footer {
@@ -91,6 +90,13 @@ body {
   font-family: 'Kiwi Maru', serif;
   background-image: image-url('lined_paper.png');
   height: 100%;
+}
+
+.page-title {
+  color: #fff;
+  background-color: #FFAD90;
+  text-align: center;
+  width: 15%;
 }
 
 .btn-orange {
