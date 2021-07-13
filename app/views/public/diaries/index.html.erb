@@ -1,14 +1,16 @@
 <div class="container">
-  <h2>日記一覧</h2>
-  <p>グループ名：<%= @group.name %></p>
+  <h2 class="page-title">日記一覧</h2>
 
   <% if @group.users.include?(current_user) %>
     <div class="row">
 
-      <%= link_to "新規投稿する", new_group_diary_path, class: "btn btn-success" %>
+        <p class="mt-5">
+          <%= link_to "新規投稿する", new_group_diary_path, class: "btn btn-blue mr-3" %>
+          グループ名：<%= @group.name %>
+        </p>
 
-      <table class="table">
-        <thead>
+      <table class="table table-bordered bg-light">
+        <thead class="table-head">
           <th>投稿日</th>
           <th>タイトル</th>
           <th>投稿者名</th>
@@ -22,15 +24,15 @@
               <td><%= diary.title %></td>
               <td><%= diary.user.nickname %></td>
               <td><%= diary.diary_comments.count %></td>
-              <td><%= link_to "閲覧する", group_diary_path(@group.id, diary.id) %></td>
+              <td class="align-middle text-center"><%= link_to "閲覧する", group_diary_path(@group.id, diary.id), class: "btn btn-orange" %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
       <p><%= paginate @diaries %></p>
 
-      <h3>参加メンバー</h3>
-      <table class="table">
+      <h3 class="mt-5">参加メンバー</h3>
+      <table class="table table-bordered bg-light">
         <tbody>
           <% @members.each do |member| %>
             <tr>
@@ -41,6 +43,7 @@
       </table>
 
     </div>
+    <div class="mt-4">
       <!--カレンダー表示-->
       <%= month_calendar(attribute: :created_at, events: @diaries) do |date, diaries| %>
         <%= date.day %>
@@ -52,6 +55,7 @@
         <% end %>
 
       <% end %>
+    </div>
 
   <% else %>
     <p>グループに参加してください。</p>

@@ -44,6 +44,10 @@ nav {
   border-bottom: 1px solid #DDDDDD;
 }
 
+.navbar-toggler{
+  background-color: #FFAD90;
+}
+
 #contents {
   margin-top: 100px;
   padding-bottom: 100px;
@@ -97,12 +101,26 @@ body {
 }
 
 .page-title {
+  display: inline-block;
   color: #fff;
   background-color: #FFAD90;
-  text-align: center;
-  width: 15%;
 }
 
+.table-head {
+  background-color: #FFAD90;
+}
+
+strong {
+  font-size: 35px;
+}
+
+.table-space {
+  border-collapse: separate;
+  border-spacing: 0px 10px;
+}
+
+
+// ここからボタンのレイアウト
 .btn-orange {
   background-color: white;
   border-color: black;
@@ -113,3 +131,27 @@ body {
   background-color: #FF8856;
   border-color: black;
 }
+
+.btn-blue {
+  background-color: white;
+  border-color: black;
+}
+
+.btn-blue:hover {
+  color: #fff;
+  background-color: #75A9FF;
+  border-color: black;
+}
+
+.btn-secondary{
+  color: black;
+  background-color: white;
+  border-color: black;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: black;
+}
+// ここまで

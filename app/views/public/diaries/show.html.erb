@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>日記詳細</h2>
+  <h2 class="page-title">日記詳細</h2>
 
   <% if @diary.status == true && @group.owner_id == current_user.id %>
     <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>

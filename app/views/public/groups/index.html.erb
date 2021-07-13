@@ -1,34 +1,40 @@
 <div class="container">
-    <h1>グループ検索</h1>
+    <h2 class="page-title">グループ検索</h2>
   <div class="row">
+    <div class="mx-auto mt-5">
 
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      グループ名 <%= f.text_field :name %>
-      <%= f.submit "検索", class: "btn btn-sm btn-success" %>
-    <% end %>
+    <div class="my-5">
+      <%= form_with url: search_path, method: :get, local: true do |f| %>
+        グループ名 <%= f.text_field :name, class: "p-1" %>
+        <%= f.submit "検索", class: "p-1" %>
+      <% end %>
+    </div>
 
-    <h3>全グループ一覧</h3>
-    <%= link_to "グループを新規作成する", new_group_path, class: "btn btn-success" %>
+      <p>
+        全グループ一覧
+        <%= link_to "グループを新規作成する", new_group_path, class: "btn btn-blue ml-5" %>
+      </p>
 
-    <table class="table">
-      <thead>
-        <th>作成日</th>
-        <th>グループ名</th>
-        <th>参加人数</th>
-        <th></th>
-      </thead>
-      <tbody>
-        <% @groups.each do |group| %>
-          <tr>
-            <td><%= group.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= group.name %></td>
-            <td><%= group.users.count %></td>
-            <td><%= link_to "詳細へ", group_path(group), class: "btn btn-primary" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <table class="table table-bordered bg-light my-3">
+        <thead class="table-head">
+          <th>作成日</th>
+          <th>グループ名</th>
+          <th>参加人数</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td><%= group.created_at.strftime('%Y/%m/%d') %></td>
+              <td><%= group.name %></td>
+              <td><%= group.users.count %></td>
+              <td><%= link_to "詳細へ", group_path(group), class: "btn btn-orange" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-    <%= paginate @groups %>
+      <%= paginate @groups %>
+    </div>
   </div>
 </div>
