@@ -21,17 +21,6 @@ class User < ApplicationRecord
   validates :last_name, :first_name, :nickname, presence: true
   validates :last_name_kana, :first_name_kana, presence: true, format: { with: /\p{katakana}/ }
 
-  def active_for_authentication?
-    super && (self.is_deleted == false)
-  end
-  # deviseのactive_for_authentication?を上書き
-  # userのis_deletedがfalseならtrueを返す
-
-  def inactive_message
-    "退会済みのアカウントです。"
-  end
-  # deviseのinactive_messageを上書き
-
   def full_name
     self.last_name + self.first_name
   end
