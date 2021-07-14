@@ -10,7 +10,7 @@
   <div class="container">
     <div class="d-flex">
       <h2 class="mt-5">お知らせ</h2>
-      <%= link_to "新規作成", new_admin_news_path, class: "btn btn-success mb-3 ml-4" %>
+      <%= link_to "新規作成", new_admin_news_path, class: "btn btn-success mt-5 mb-3 ml-4" %>
     </div>
 
     <div class="row">
@@ -20,8 +20,8 @@
             <% @news.each do |news| %>
               <tr>
                 <td class="table-light border-dark">
-                  <%= news.created_at.strftime('%Y/%m/%d') %>
-                  <%= link_to news.body, edit_admin_news_path(news) %>
+                  <%= news.created_at.strftime('%Y/%m/%d') + "　" %>
+                  <%= link_to safe_join(news.body.split("\n"),tag(:br)), edit_admin_news_path(news) %>
                 </td>
               </tr>
             <% end %>
@@ -42,8 +42,8 @@
             <% @news.each do |news| %>
               <tr>
                 <td class="table-light border-dark">
-                  <%= news.created_at.strftime('%Y/%m/%d') %>
-                  <%= news.body %>
+                  <%= news.created_at.strftime('%Y/%m/%d') + "　" %>
+                  <%= safe_join(news.body.split("\n"),tag(:br)) %>
                 </td>
               </tr>
             <% end %>
