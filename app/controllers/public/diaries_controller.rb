@@ -4,8 +4,9 @@ class Public::DiariesController < ApplicationController
 
   def index
     @group = Group.find(params[:group_id])
-    @diaries = @group.diaries.all.order(created_at: :desc).page(params[:page]).per(10)
-    @members = @group.group_users
+    @diaries = @group.diaries.user_order_desc_per_10(params[:page])
+    @members = @group.group_users.joins(:user).where(users: {is_deleted: false})
+    # 有効ステータスのユーザの日記のみ表示させる
   end
 
   def new
@@ -39,18 +40,26 @@ class Public::DiariesController < ApplicationController
   def update
     @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
-    if @diary.update(diary_params)
-      redirect_to group_diary_path(@group.id, @diary.id)
+    if @diary.user_id == current_user.id
+      if @diary.update(diary_params)
+        redirect_to group_diary_path(@group.id, @diary.id)
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      redirect_to group_diaries_path(@group)
     end
   end
 
   def destroy
     @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
-    @diary.destroy
-    redirect_to group_diaries_path
+    if @diary.user_id == current_user.id
+      @diary.destroy
+      redirect_to group_diaries_path(@group)
+    else
+      redirect_to group_diaries_path(@group)
+    end
   end
 
   private

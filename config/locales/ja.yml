@@ -38,3 +38,36 @@ ja:
       - 10月
       - 11月
       - 12月
+
+ja:
+  activerecord:
+    models:
+      user: ユーザ
+      admin: 管理者
+      news: お知らせ
+      group: グループ
+      diary: 日記
+      diary_comment: 日記コメント
+
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        last_name: お名前(姓)
+        first_name:  お名前(名)
+        last_name_kana: 姓(カナ)
+        first_name_kana: 名(カナ)
+        nickname: ニックネーム
+      admin:
+        email: メールアドレス
+        password: パスワード
+      news:
+        body: お知らせ内容
+      group:
+        name: グループ名
+        password: パスワード
+      diary:
+        title: タイトル
+        body: 日記内容
+      diary_comment:
+        comment: コメント

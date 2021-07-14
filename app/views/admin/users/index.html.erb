@@ -2,20 +2,23 @@
   <h2>ユーザ一覧</h2>
   <div class="row">
 
-    <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
-      <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
-      <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
-      <%= f.text_field 'search[value]' %>
-      <%= f.submit "検索", class: "btn btn-sm btn-success" %>
-    <% end %>
+    <div class="mt-5 mb-3">
+      <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+        <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
+        <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
+        <%= f.text_field 'search[value]' %>
+        <%= f.submit "検索", class: "p-1" %>
+      <% end %>
+    </div>
 
-    <table class="table">
-      <thead>
+    <table class="table bg-light">
+      <thead class="table-head">
         <th>作成日</th>
         <th>名前</th>
         <th>ニックネーム</th>
         <th>ステータス</th>
       </thead>
+      <tbody>
       <% @users.each do |user| %>
         <tr>
           <td>
@@ -29,14 +32,16 @@
           </td>
           <td>
             <% if user.is_deleted == true %>
-              <div class="text-muted"><strong><%= "退会" %></strong></div>
+              <div class="text-muted"><%= "退会" %></div>
             <% else %>
-              <div class="text-success"><strong><%= "有効" %></strong></div>
+              <div class="text-success"><%= "有効" %></div>
             <% end %>
           </td>
         </tr>
       <% end %>
+      </tbody>
     </table>
+
   </div>
   <%= paginate @users %>
 </div>

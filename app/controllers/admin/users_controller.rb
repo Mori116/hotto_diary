@@ -8,13 +8,10 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_group = User.find(params[:id]).group_ids
+    @groups = Group.find(@user_group)
+    # 所属グループの表示
   end
-
-  def join_groups
-    @user = User.find(params[:id]).group_ids
-    @groups = Group.find(@user)
-  end
-  # 所属グループの表示
 
   def edit
     @user = User.find(params[:id])

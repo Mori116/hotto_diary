@@ -3,7 +3,10 @@ class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @groups = Group.all.order(created_at: :desc).page(params[:page]).per(10)
+    @false_user = User.where(is_deleted: false).pluck(:id)
+    @false_owner = Group.where(owner_id: @false_user)
+    @groups = @false_owner.order(created_at: :desc).page(params[:page]).per(10)
+    # 有効ステータスのグループ作成者のグループのみ表示させる
   end
 
   def new
@@ -23,6 +26,9 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @owner = @group.owner_id
+    @user = User.find_by(id: @owner)
+    @user_count = @group.users.where(is_deleted: false).count
   end
 
   def edit
@@ -31,10 +37,14 @@ class Public::GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    if @group.update(group_params)
-      redirect_to group_path(@group)
+    if @group.owner_id == current_user.id
+      if @group.update(group_params)
+        redirect_to group_path(@group)
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      redirect_to groups_path
     end
   end
 
@@ -65,8 +75,12 @@ class Public::GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    @group.destroy
-    redirect_to groups_path
+    if @group.owner_id == current_user.id
+      @group.destroy
+      redirect_to groups_path
+    else
+      redirect_to groups_path
+    end
   end
 
 

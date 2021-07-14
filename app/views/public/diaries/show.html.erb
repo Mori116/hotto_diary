@@ -1,16 +1,27 @@
 <div class="container">
-  <h2>日記詳細</h2>
+  <h2 class="page-title">日記詳細</h2>
 
-  <% if @diary.status == true && @group.owner_id == current_user.id %>
-    <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
+  <% if @diary.user.is_deleted == false %>
 
-  <% elsif @diary.status == true && @diary.user.id == current_user.id %>
-    <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
+    <% if @diary.status == true && @group.owner_id == current_user.id %>
+      <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
 
-  <% elsif @diary.status == false %>
-    <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
+    <% elsif @diary.status == true && @diary.user.id == current_user.id %>
+      <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
+
+    <% elsif @diary.status == false %>
+      <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
+
+    <% else %>
+      <p>本日記は非公開設定されています。</p>
+    <% end %>
 
   <% else %>
-    <p>本日記は非公開設定されています。</p>
+    <div class="row">
+      <div class="mx-auto mt-5">
+        <p class="text-danger">ユーザが退会済みのため、日記の閲覧ができません。</p>
+      </div>
+    </div>
   <% end %>
+
 </div>

@@ -1,9 +1,9 @@
-<h1>マイページ</h1>
 <div class="container">
+  <h2 class="page-title">マイページ</h2>
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 mt-5">
       <h3>登録情報</h3>
-      <table>
+      <table class="table table-bordered bg-light">
         <tr>
           <th>お名前</th>
           <td><%= @user.full_name %></td>
@@ -21,22 +21,18 @@
           <td><%= @user.email %></td>
         </tr>
       </table>
+      <%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-blue" %>
+      <%= link_to "交換日記へ", join_groups_user_path(@user.id), class: "btn btn-orange ml-2" %>
     </div>
-  </div>
-    <%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-success" %>
-</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-6">
+    <div class="col-6 mt-5">
       <h3>通知一覧</h3>
         <% if @notifications.exists? %>
           <%= render 'public/notifications/notification', notifications: @notifications %>
         <% else %>
-          <p>通知はありません</p>
+          <p>通知はありません。</p>
         <% end %>
         <%= paginate @notifications %>
     </div>
   </div>
-    <%= link_to "交換日記へ", join_groups_user_path(@user.id), class: "btn btn-primary" %>
 </div>

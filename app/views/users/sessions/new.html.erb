@@ -1,27 +1,35 @@
 <p id="alert"><%= alert %></p>
 
 <div class="container">
-  <h2>ログイン</h2>
+  <h2 class="page-title">ログイン</h2>
   <div class="row">
-    <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+    <div class="mx-auto mt-5">
 
-      <div class="field">
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
+      <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
 
-      <div class="field">
-        <%= f.label :password, "パスワード" %>
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
+        <table>
+          <tbody>
+            <tr>
+              <td><%= f.label :email, "メールアドレス", class: "mr-2" %></td>
+              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :password, "パスワード", class: "mr-2" %></td>
+              <td><%= f.password_field :password, autocomplete: "current-password", size: 30 %></td>
+            </tr>
+          </tbody>
+        </table>
 
-      <div class="actions">
-        <%= f.submit "ログイン", class: "btn btn-success" %>
-      </div>
-    <% end %>
+        <div class="offset-4 mt-3">
+          <%= f.submit "ログイン", class: "btn btn-orange px-5" %>
+        </div>
+      <% end %>
+
+      <p class="mt-5">
+        新規登録がお済みでない方<br>
+        <%= link_to "こちら", new_user_registration_path %>　から新規登録を行ってください。
+      </p>
+
+    </div>
   </div>
-    <p>
-      新規登録がお済みでない方<br>
-      <%= link_to "こちら", new_user_registration_path %>　から新規登録を行ってください。
-    </p>
 </div>

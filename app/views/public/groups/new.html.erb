@@ -1,7 +1,7 @@
 <div class="container">
-  <h1 class="my-5">グループ作成</h1>
+  <h2 class="page-title">グループ作成</h2>
   <div class="row">
-    <div class="mx-auto">
+    <div class="mx-auto mt-5">
 
       <%= form_with model: @group, local: true do |f| %>
       <%= render 'layouts/errors', obj: @group %>
@@ -11,8 +11,8 @@
             <td><%= f.text_field :name %></td>
           </tr>
           <tr>
-            <td><%= f.label :image, 'グループ画像' %></td>
-            <td><%= f.attachment_field :image %></td>
+            <td><%= f.label :image, 'グループ画像', class: "my-2" %></td>
+            <td><%= f.attachment_field :image, class: "my-2" %></td>
           </tr>
           <tr>
             <td><%= f.label :password, "パスワード（6文字以上）" %></td>
@@ -20,11 +20,11 @@
           </tr>
           <tr>
             <td><%= f.label :password_confirmation, "パスワード（確認用）" %></td>
-            <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+            <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "my-2" %></td>
           </tr>
         </table>
 
-        <%= f.submit '作成する', class: 'btn btn-success offset-5' %>
+        <%= f.submit '作成する', class: 'btn btn-orange offset-4' %>
         <%= link_to "戻る", :back, class: "btn btn-secondary ml-3" %>
       <% end %>
 

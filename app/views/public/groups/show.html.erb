@@ -1,33 +1,57 @@
 <div class="container">
-  <h1>グループ詳細</h1>
-  <div class="row">
-    <div class="mx-auto d-flex">
-      <%= attachment_image_tag @group, :image, size: "250x200", fallback: "no_image.jpg" %>
+  <h2 class="page-title">グループ詳細</h2>
 
-      <table>
-        <tr>
-          <td>グループ名</td>
-          <td><%= @group.name %></td>
-        </tr>
-        <tr>
-          <td>参加人数</td>
-          <td><%= @group.users.count %></td>
-        </tr>
-        <tr>
-          <td>グループ作成者</td>
-          <td><%= @group.owner.nickname %></td>
-        </tr>
-      </table>
+  <% if @user.is_deleted == false %>
 
+    <div class="row">
+      <div class="mx-auto d-flex mt-5">
+
+        <div class="col-6">
+          <%= attachment_image_tag @group, :image, size: "250x200", fallback: "no_image.jpg" %>
+        </div>
+
+        <div class="col-6">
+          <table class="table-space">
+            <tr>
+              <td class="col-5">グループ名</td>
+              <td class="col-3"><%= @group.name %></td>
+            </tr>
+            <tr>
+              <td class="col-5">参加人数</td>
+              <td class="col-3"><%= @user_count %></td>
+            </tr>
+            <tr>
+              <td class="col-5">グループ作成者</td>
+              <td class="col-3"><%= @group.owner.nickname %></td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
     </div>
-  </div>
-    <% if @group.owner_id == current_user.id %>
-      <%= link_to "編集する", edit_group_path(@group), class: "btn" %>
-    <% elsif @group.users.include?(current_user) %>
-      <%= link_to "退出する", exit_group_path(@group), method: :delete, class: "btn" %>
-    <% else %>
-      <%= link_to "参加する", join_group_path(@group), class: "btn" %>
-    <% end %>
 
-      <%= link_to "交換日記へ", group_diaries_path(@group), class: "btn" %>
+    <div class="row">
+      <div class="mx-auto mt-5">
+        <% if @group.owner_id == current_user.id %>
+          <%= link_to "編集する", edit_group_path(@group), class: "btn btn-blue px-5" %>
+          <%= link_to "交換日記へ", group_diaries_path(@group), class: "btn btn-orange px-5 ml-3" %>
+
+        <% elsif @group.users.include?(current_user) %>
+          <%= link_to "退出する", exit_group_path(@group), method: :delete, class: "btn btn-danger px-5" %>
+          <%= link_to "交換日記へ", group_diaries_path(@group), class: "btn btn-orange px-5 ml-3" %>
+
+        <% else %>
+          <%= link_to "参加する", join_group_path(@group), class: "btn btn-orange px-5" %>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+    <div class="row">
+      <div class="mx-auto mt-5">
+        <p class="text-danger">グループ作成者が退会済みのため、本グループは利用できません。</p>
+      </div>
+    </div>
+  <% end %>
+
 </div>

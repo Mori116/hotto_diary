@@ -3,6 +3,7 @@
 
   <head>
     <title>HottoDiary</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,8 +13,11 @@
   </head>
 
   <body>
-    <div id='container'>
+    <div>
       <%= render 'layouts/header' %>
+    </div>
+
+    <div id='container'>
 
       <main>
         <div id='contents'>
@@ -22,13 +26,12 @@
         </div>
       </main>
 
-      <footer id="footer" class="bg-light">
-        <div class='container'>
-            <p class="text-center">©2021 HottoDiary</p>
-        </div>
-      </footer>
-
     </div>
+    <footer class="fixed-bottom bg-light">
+      <div class='container'>
+          <p class="text-center">©2021 HottoDiary</p>
+      </div>
+    </footer>
   </body>
 
 </html>

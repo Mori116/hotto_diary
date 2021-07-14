@@ -1,35 +1,38 @@
 <div class="container">
-    <h2>新規投稿</h2>
+  <h2 class="page-title">新規投稿</h2>
   <div class="row">
+    <div class="mx-auto mt-5">
 
-    <%= form_with model: @diary, url: group_diaries_path, local: true do |f| %>
-    <%= render 'layouts/errors', obj: @diary %>
-      <table>
-        <tr>
-          <td>タイトル</td>
-          <td><%= f.text_field :title %></td>
-        </tr>
-        <tr>
-          <td>画像</td>
-          <td><%= f.attachment_field :image %></td>
-        </tr>
-        <tr>
-          <td>内容</td>
-          <td><%= f.text_field :body %></td>
-        </tr>
-        <tr>
-          <td>
-            <%= f.radio_button :status, :false, checked: true %>公開
-            <%= f.radio_button :status, :true %>非公開
-          </td>
-        </tr>
-      </table>
-        <p class="small">
-          ※非公開にするとグループ作成者のみ閲覧可能になり、<br>
-  　      グループ参加者は閲覧不可となります。
-  　     </p>
-  　   <%= f.submit "作成する", class: "btn btn-success" %>
-    <% end %>
+      <%= form_with model: @diary, url: group_diaries_path, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @diary %>
+        <table>
+          <tr>
+            <td>タイトル</td>
+            <td><%= f.text_field :title, class: "ml-2" %></td>
+          </tr>
+          <tr>
+            <td>画像</td>
+            <td><%= f.attachment_field :image, class: "ml-2 my-2 p-1" %></td>
+          </tr>
+          <tr>
+            <td>内容</td>
+            <td><%= f.text_area :body, class: "ml-2 mb-2 p-1", size: "80x20" %></td>
+          </tr>
+        </table>
 
+        <div class="offset-1">
+          <%= f.radio_button :status, :false, checked: true %>公開
+          <%= f.radio_button :status, :true, class: "ml-3" %>非公開
+          <p class="small">
+            ※非公開にするとグループ作成者のみ閲覧可能になり、<br>
+    　      グループ参加者は閲覧不可となります。
+    　     </p>
+    　   </div>
+
+    　   <%= f.submit "作成する", class: "btn btn-orange offset-4 px-5" %>
+    　   <%= link_to "戻る", :back, class: "btn btn-secondary" %>
+      <% end %>
+
+    </div>
   </div>
 </div>

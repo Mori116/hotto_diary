@@ -1,19 +1,22 @@
 <p id="alert"><%= alert %></p>
+
 <div class="container">
-    <h1>検索結果</h1>
+  <h2>検索結果</h2>
   <div class="row">
 
+    <div class="mt-5 mb-3">
       <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
         <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
         <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
         <%= f.text_field 'search[value]' %>
         <%= f.submit "検索", class: "btn btn-sm btn-success" %>
       <% end %>
+    </div>
 
     検索ワード'<%= @value %>'
     <% if @model == "user" %>
-      <table class="table">
-        <thead>
+      <table class="table bg-light">
+        <thead class="table-head">
           <th>作成日</th>
           <th>ユーザー名</th>
           <th>ニックネーム</th>
@@ -27,9 +30,9 @@
             <td><%= data.nickname %></td>
             <td>
               <% if data.is_deleted == true %>
-                <div class="text-muted"><strong><%= "退会" %></strong></div>
+                <div class="text-muted"><%= "退会" %></div>
               <% else %>
-                <div class="text-success"><strong><%= "有効" %></strong></div>
+                <div class="text-success"><%= "有効" %></div>
               <% end %>
             </td>
           </tr>
@@ -38,8 +41,8 @@
       </table>
 
     <% elsif @model == "group" %>
-      <table class="table">
-        <thead>
+      <table class="table bg-light">
+        <thead class="table-head">
           <th>作成日</th>
           <th>グループ名</th>
           <th>参加人数</th>
@@ -60,8 +63,8 @@
       </table>
 
     <% else %>
-      <table class="table">
-        <thead>
+      <table class="table bg-light">
+        <thead class="table-head">
           <th>投稿日</th>
           <th>タイトル</th>
           <th>投稿者</th>
@@ -83,6 +86,6 @@
       </table>
     <% end %>
 
-    <%= paginate @datas %>
   </div>
+  <%= paginate @datas %>
 </div>
