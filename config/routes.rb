@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       member do
         get 'quit'
         patch 'withdraw'
+        get 'join_groups'
       end
     end
 
@@ -38,11 +39,7 @@ Rails.application.routes.draw do
   # 管理者側
   namespace :admin do
     resources :news, only: [:new, :create, :edit, :update, :destroy]
-    resources :users, only: [:index, :show, :edit, :update] do
-      member do
-        get 'join_groups'
-      end
-    end
+    resources :users, only: [:index, :show, :edit, :update]
 
     resources :groups, only: [:index, :show, :destroy] do
       collection do
