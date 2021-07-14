@@ -1,44 +1,40 @@
-<div class="mt-5">
-
-  <div class="row">
-    <div class="mx-auto">
-      <strong><%= diary.title %></strong>
-    </div>
+<div class="row">
+  <div class="mx-auto mt-5">
+    <strong><%= diary.title %></strong>
   </div>
+</div>
 
-  <div class="row">
-    <div class="my-5 d-flex">
-      <div class="col-5">
-        <%= attachment_image_tag diary, :image, size: "350x300", fallback: "no_image.jpg" %>
-      </div>
-      <div class="col-7 bg-light">
-        <%= safe_join(diary.body.split("\n"),tag(:br)) %>
-        <!--改行を反映させる-->
-        <div id="diary-comment">
-          <%= render 'public/diary_comments/comment_area', diary_comments: diary_comments, group: group, diary: diary  %>
-        </div>
+<div class="row my-5">
+  <div class="col-md-5">
+    <%= attachment_image_tag diary, :image, size: "350x300", class: "img-fluid mx-auto d-block", fallback: "no_image.jpg" %>
+  </div>
+  <div class="col-md-7 mt-3 mt-md-0">
+    <div class="bg-light border rounded">
+      <%= safe_join(diary.body.split("\n"),tag(:br)) %><!--改行を反映させる-->
+      <div id="diary-comment">
+        <%= render 'public/diary_comments/comment_area', diary_comments: diary_comments, group: group, diary: diary  %>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="d-flex">
-
-      <% if diary.user == current_user %>
-        <div class="col-6">
-          <%= link_to "編集する", edit_group_diary_path(group.id, diary.id), class: "btn btn-blue mr-3" %>
-          <%= link_to "削除する", group_diary_path(group.id, diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
-        </div>
-      <% end %>
-
-      <%= render 'layouts/errors', obj: comment_new %>
-      <%= form_with(model: [group, diary, comment_new], url: group_diary_diary_comments_path({group_id: group, diary_id: diary.id})) do |f| %>
-        <div class="col-6 mx-auto">
-          <%= f.text_area :comment, class: "p-1", size: "50x5" %><br>
-          <%= f.submit "コメントする", class: "btn btn-secondary" %>
-        </div>
-      <% end %>
+<div class="row">
+  <% if diary.user == current_user %>
+    <div class="col-md-5 text-center">
+      <%= link_to "編集する", edit_group_diary_path(group.id, diary.id), class: "btn btn-blue mr-3" %>
+      <%= link_to "削除する", group_diary_path(group.id, diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
     </div>
-  </div>
+  <% end %>
 
+  <div class="col-md-7">
+    <%= form_with(model: [group, diary, comment_new], url: group_diary_diary_comments_path({group_id: group, diary_id: diary.id})) do |f| %>
+      <div class="comment-error">
+        <%= render 'layouts/errors', obj: comment_new %>
+      </div>
+        <%= f.text_area :comment, class: "form-control", size: "50x5" %><br>
+        <div class="text-right">
+        <%= f.submit "コメントする", class: "btn btn-orange" %>
+        </div>
+    <% end %>
+  </div>
 </div>

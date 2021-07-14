@@ -4,7 +4,7 @@ module Public::NotificationsHelper
       @visitor = notification.visitor
       @comment = nil
       @visiter_comment = notification.diary_comment_id
-      #notification.actionがfollowかlikeかcommentか
+      #notification.actionがcommentである場合
       case notification.action
         when "comment" then
           @comment = DiaryComment.find_by(id: @visiter_comment)&.comment

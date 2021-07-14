@@ -9,12 +9,14 @@ class Public::UsersController < ApplicationController
     @notifications.where(checked: false).each do |notification|
       notification.update_attributes(checked: true)
     end
-    # @notificationの中でまだ確認していない(indexに一度も遷移していない)通知のみ
+    # @notificationの中でまだ確認していない(showに一度も遷移していない)通知のみ
   end
 
   def join_groups
-    @user = User.find(params[:id]).group_ids
-    @groups = Group.find(@user)
+    @false_user = User.where(is_deleted: false).pluck(:id)
+    @false_owner = Group.where(owner_id: @false_user)
+    @groups = @false_owner.includes(:users).where(users: {is_deleted: false})
+    # 有効ステータスのグループ作成者のグループのみ表示させる
   end
   # 所属グループの表示
 
@@ -41,7 +43,7 @@ class Public::UsersController < ApplicationController
     # ユーザステータスを有効から退会にする
     reset_session
     # すべてのセッション情報を削除
-    flash[:alert] = "退会しました。"
+    flash[:alert] = "退会しました。ご利用ありがとうございました！"
     redirect_to root_path
   end
 
