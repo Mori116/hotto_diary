@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       member do
         get 'quit'
         patch 'withdraw'
-        get 'join_groups'
       end
     end
 
