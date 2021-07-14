@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       collection do
         get 'diaries'
       end
-      resources :diaries, only: [:index, :show]
+      resources :diaries, only: [:index, :show, :destroy]
     end
 
     get 'search' => "searches#search"

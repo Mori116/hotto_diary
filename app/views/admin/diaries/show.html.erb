@@ -8,6 +8,7 @@
   <div class="row">
     <%= attachment_image_tag @diary, :image, size: "250x200", fallback: "no_image.jpg" %>
     <%= @diary.body %>
+    <%= link_to "削除する", admin_group_diary_path(@group.id, @diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
   </div>
 
   <div class="row">

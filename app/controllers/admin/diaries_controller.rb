@@ -14,4 +14,11 @@ class Admin::DiariesController < ApplicationController
     @diary_comments = @diary.diary_comments
   end
 
+  def destroy
+    @group = Group.find(params[:group_id])
+    @diary = Diary.find(params[:id])
+    @diary.destroy
+    redirect_to admin_group_diaries_path
+  end
+
 end
