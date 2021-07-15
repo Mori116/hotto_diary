@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="top-visual col-12">
+    <div class="top-visual col-md-12">
       <div class="main-visual">
         <h2 class="top-title">ほっとダイアリーへようこそ。</h2>
       </div>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="row">
-      <div class="col-5">
+      <div class="col-md-5">
         <table class="table table-bordered">
           <tbody>
             <% @news.each do |news| %>
@@ -41,7 +41,7 @@
 <% else %>
   <div class="container">
     <div class="row">
-      <div class="col-5">
+      <div class="col-md-5">
       <h2 class="mt-5">お知らせ</h2>
         <table class="table table-bordered">
           <tbody>
@@ -58,15 +58,15 @@
         </table>
       </div>
 
-      <div class="mt-5 mx-auto">
-        <h4>
-          新規登録済の方はこちら
-          <%= link_to "ログインする", new_user_session_path, class: "btn btn-orange my-2 px-5" %>
-        </h4>
-        <h4>
-          未登録の方はこちら
-          <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-orange my-2 ml-5 px-5" %>
-        </h4>
+      <div class="col-md-7 text-center">
+        <div class="mt-5 mx-auto">
+          <h4>新規登録済の方はこちら</h4>
+          <%= link_to "ログインする", new_user_session_path, class: "btn btn-orange" %>
+        </div>
+        <div class="mt-4 mx-auto">
+          <h4>未登録の方はこちら</h4>
+          <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-orange" %>
+        </div>
       </div>
     </div>
   </div>
