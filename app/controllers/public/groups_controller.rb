@@ -28,7 +28,7 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @owner = @group.owner_id
     @user = User.find_by(id: @owner)
-    @user_count = @group.users.where(is_deleted: false).count
+    @user_count = @group.users.where(is_deleted: false).size
   end
 
   def edit
