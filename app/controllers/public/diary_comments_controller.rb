@@ -8,7 +8,7 @@ class Public::DiaryCommentsController < ApplicationController
     @comment_new = current_user.diary_comments.new(diary_comment_params)
     @comment_new.diary_id = @diary.id
     if @comment_new.save
-      @comment_new.create_notification_comment!(current_user, @comment_new.id)
+      @comment_new.create_notification_comment!(current_user, @comment_new.id, @diary.user_id)
     else
       render "error"
     end

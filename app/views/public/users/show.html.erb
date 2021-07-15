@@ -28,6 +28,7 @@
     <div class="col-md-6 mt-5">
       <h3>通知一覧</h3>
         <% if @notifications.exists? %>
+          <%= link_to '既読にする', destroy_notification_users_path, method: :delete %>
           <%= render 'public/notifications/notification', notifications: @notifications %>
         <% else %>
           <p>通知はありません。</p>

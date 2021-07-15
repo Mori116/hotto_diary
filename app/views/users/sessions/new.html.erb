@@ -2,34 +2,41 @@
 
 <div class="container">
   <h2 class="page-title">ログイン</h2>
-  <div class="row">
-    <div class="mx-auto mt-5">
 
-      <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+    <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <div class="row">
+        <div class="col-md-6 mx-auto mt-5">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <%= f.label :email, "メールアドレス", class: "mr-3" %>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <%= f.label :password, "パスワード", class: "mr-2 mr-5" %>
+                  <%= f.password_field :password, autocomplete: "current-password", size: 30 %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-        <table>
-          <tbody>
-            <tr>
-              <td><%= f.label :email, "メールアドレス", class: "mr-2" %></td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :password, "パスワード", class: "mr-2" %></td>
-              <td><%= f.password_field :password, autocomplete: "current-password", size: 30 %></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="offset-4 mt-3">
+      <div class="row">
+        <div class="mx-auto mt-3">
           <%= f.submit "ログイン", class: "btn btn-orange px-5" %>
         </div>
-      <% end %>
+      </div>
+    <% end %>
 
-      <p class="mt-5">
+    <div class="row">
+      <p class="col-md-6 offset-md-3 mt-5">
         新規登録がお済みでない方<br>
         <%= link_to "こちら", new_user_registration_path %>　から新規登録を行ってください。
       </p>
-
     </div>
-  </div>
+
 </div>
