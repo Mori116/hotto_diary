@@ -15,8 +15,8 @@ class Public::UsersController < ApplicationController
   def join_groups
     @false_user = User.where(is_deleted: false).pluck(:id)
     @false_owner = Group.where(owner_id: @false_user)
-    @groups = @false_owner.includes(:users).where(users: {is_deleted: false})
-    # 有効ステータスのグループ作成者のグループのみ表示させる
+    @groups = @false_owner.includes(:group_users).where(group_users: {user_id: current_user.id}).includes(:users).where(users: {is_deleted: false})
+    # 有効ステータスのグループ作成者のグループ、ユーザのみ表示させる
   end
   # 所属グループの表示
 

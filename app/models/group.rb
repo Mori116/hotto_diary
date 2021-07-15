@@ -14,4 +14,9 @@ class Group < ApplicationRecord
     User.find(self.owner_id)
   end
 
+  scope :order_desc_per_10, -> page {
+    order(created_at: :desc).page(page).per(10)
+    # 作成日を降順で１０レコードずつ表示。
+  }
+
 end
