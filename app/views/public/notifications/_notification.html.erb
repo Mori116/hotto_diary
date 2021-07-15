@@ -1,16 +1,16 @@
-<% notifications.each do |notification| %>
+<table class="table table-bordered bg-light">
+  <% notifications.each do |notification| %>
+    <% visitor = notification.visitor %>
+    <% diary = notification.diary %>
+    <% group = notification.diary.group %>
 
-  <% visitor = notification.visitor %>
-  <% diary = notification.diary %>
-  <% group = notification.diary.group %>
-
-  <table class="table table-bordered">
     <tr>
-      <%= notification_form(notification) %><span><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span><br>
-      <% if !@comment.nil? %>
-        <p class="text-center" style="color: #C0C0C0;"><%= @comment %></p>
-      <% end %>
+      <td>
+        <%= notification_form(notification) %><span><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span><br>
+        <% if !@comment.nil? %>
+          <p class="text-left" style="color: #C0C0C0;"><%= @comment %></p>
+        <% end %>
+      </td>
     </tr>
-  </table>
-
-<% end %>
+  <% end %>
+</table>
