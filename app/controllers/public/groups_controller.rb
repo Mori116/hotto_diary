@@ -5,7 +5,7 @@ class Public::GroupsController < ApplicationController
   def index
     @false_user = User.where(is_deleted: false).pluck(:id)
     @false_owner = Group.where(owner_id: @false_user)
-    @groups = @false_owner.order(created_at: :desc).page(params[:page]).per(10)
+    @groups = @false_owner.includes(:users).where(users: {is_deleted: false}).order_desc_per_10(params[:page])
     # 有効ステータスのグループ作成者のグループのみ表示させる
   end
 
@@ -28,7 +28,7 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @owner = @group.owner_id
     @user = User.find_by(id: @owner)
-    @user_count = @group.users.where(is_deleted: false).count
+    @user_count = @group.users.where(is_deleted: false).size
   end
 
   def edit

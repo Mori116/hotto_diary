@@ -1,13 +1,13 @@
-<table class="table bg-light">
+<table class="table">
   <% diary_comments.each do |diary_comment| %>
-      <tr>
-        <td>
-          <%= diary_comment.user.nickname + "：" %>
-          <%= safe_join(diary_comment.comment.split("\n"),tag(:br)) %>
-          <% if diary_comment.user == current_user %>
-            <%= link_to "削除する", group_diary_diary_comment_path({group_id: group.id, diary_id: diary.id, id: diary_comment.id}), method: :delete, class: "btn btn-sm btn-danger ml-2", remote: true %>
-          <% end %>
-        </td>
-      </tr>
+    <tr>
+      <td>
+        <%= diary_comment.user.nickname + "：" %>
+        <%= safe_join(diary_comment.comment.split("\n"),tag(:br)) %>
+        <% if diary_comment.user == current_user %>
+          <%= link_to "削除する", group_diary_diary_comment_path({group_id: group.id, diary_id: diary.id, id: diary_comment.id}), method: :delete, class: "btn btn-sm btn-danger ml-2", remote: true %>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
 </table>

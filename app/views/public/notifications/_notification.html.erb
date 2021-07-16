@@ -1,16 +1,18 @@
-<% notifications.each do |notification| %>
+<table class="table table-bordered bg-light">
+  <% notifications.each do |notification| %>
+    <% visitor = notification.visitor %>
+    <% diary = notification.diary %>
 
-  <% visitor = notification.visitor %>
-  <% diary = notification.diary %>
-  <% group = notification.diary.group %>
-
-  <table class="table table-bordered">
     <tr>
-      <%= notification_form(notification) %><span><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span><br>
-      <% if !@comment.nil? %>
-        <p class="text-center" style="color: #C0C0C0;"><%= @comment %></p>
-      <% end %>
+      <td>
+        <% if notification.action == 'comment' %>
+          <%= visitor.nickname %>が<%= link_to 'あなたの日記', group_diary_path(diary.group_id, diary.id) %>にコメントしました。
+        <% end %>
+        <span><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span><br>
+        <% if notification.diary_comment.comment %>
+          <p class="text-left" style="color: #C0C0C0;"><%= notification.diary_comment.comment %></p>
+        <% end %>
+      </td>
     </tr>
-  </table>
-
-<% end %>
+  <% end %>
+</table>

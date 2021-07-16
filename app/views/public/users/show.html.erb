@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="page-title">マイページ</h2>
   <div class="row">
-    <div class="col-6 mt-5">
+    <div class="col-md-6 mt-5">
       <h3>登録情報</h3>
       <table class="table table-bordered bg-light">
         <tr>
@@ -25,9 +25,10 @@
       <%= link_to "交換日記へ", join_groups_user_path(@user.id), class: "btn btn-orange ml-2" %>
     </div>
 
-    <div class="col-6 mt-5">
+    <div class="col-md-6 mt-5">
       <h3>通知一覧</h3>
         <% if @notifications.exists? %>
+          <%= link_to '全削除', destroy_notification_users_path, method: :delete %>
           <%= render 'public/notifications/notification', notifications: @notifications %>
         <% else %>
           <p>通知はありません。</p>

@@ -4,19 +4,19 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # binding.pry
     @notifications = current_user.passive_notifications.order(created_at: :desc).page(params[:page]).per(10)
     # current_userの投稿に紐づいた通知一覧
-    @notifications.where(checked: false).each do |notification|
-      notification.update_attributes(checked: true)
-    end
-    # @notificationの中でまだ確認していない(showに一度も遷移していない)通知のみ
+    current_user.check_notifications
   end
 
   def join_groups
-    @false_user = User.where(is_deleted: false).pluck(:id)
+    @false_user = User.not_deleted.pluck(:id)
     @false_owner = Group.where(owner_id: @false_user)
-    @groups = @false_owner.includes(:users).where(users: {is_deleted: false})
-    # 有効ステータスのグループ作成者のグループのみ表示させる
+    @groups = @false_owner.includes(:group_users, :users)
+                          .where(group_users: { user_id: current_user.id })
+                          .where(users: { is_deleted: false })
+    # 有効ステータスのグループ作成者のグループ、ユーザのみ表示させる
   end
   # 所属グループの表示
 
@@ -45,6 +45,11 @@ class Public::UsersController < ApplicationController
     # すべてのセッション情報を削除
     flash[:alert] = "退会しました。ご利用ありがとうございました！"
     redirect_to root_path
+  end
+
+  def destroy_notification
+    current_user.passive_notifications.destroy_all
+    redirect_to user_path(current_user)
   end
 
 

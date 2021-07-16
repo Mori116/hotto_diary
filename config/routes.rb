@@ -19,6 +19,9 @@ Rails.application.routes.draw do
         patch 'withdraw'
         get 'join_groups'
       end
+      collection do
+        delete 'destroy_notification'
+      end
     end
 
     resources :groups do
