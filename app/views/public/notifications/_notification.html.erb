@@ -2,12 +2,11 @@
   <% notifications.each do |notification| %>
     <% visitor = notification.visitor %>
     <% diary = notification.diary %>
-    <% group = notification.diary.group %>
 
     <tr>
       <td>
         <% if notification.action == 'comment' %>
-          <%= notification.visitor.nickname %>が<%= link_to 'あなたの日記', group_diary_path(notification.diary.group_id, notification.diary_id) %>にコメントしました
+          <%= visitor.nickname %>が<%= link_to 'あなたの日記', group_diary_path(diary.group_id, diary.id) %>にコメントしました。
         <% end %>
         <span><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span><br>
         <% if notification.diary_comment.comment %>
