@@ -44,7 +44,7 @@ body {
   font-family: 'Kiwi Maru', serif;
   background-image: image-url('lined_paper.png');
   height: 100%;
-  margin-bottom: 65px;
+  margin-bottom: 70px;
   margin-top: 100px;
 }
 
@@ -106,6 +106,14 @@ strong {
   border-spacing: 0px 10px;
 }
 
+.message-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.line-style {
+  border-bottom: 1px dashed #8c8b8b;
+}
 
 // ここからボタンのレイアウト
 .btn-orange {

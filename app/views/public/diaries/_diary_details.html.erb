@@ -6,10 +6,10 @@
 
 <div class="row my-5">
   <div class="col-md-5">
-    <%= attachment_image_tag diary, :image, size: "350x300", class: "img-fluid mx-auto d-block", fallback: "no_image.jpg" %>
+    <%= attachment_image_tag diary, :image, size: "350x300", class: "img-fluid mx-auto d-block card", fallback: "no_image.jpg" %>
   </div>
   <div class="col-md-7 mt-3 mt-md-0">
-    <div class="bg-light border rounded">
+    <div class="card p-1">
       <%= safe_join(diary.body.split("\n"),tag(:br)) %><!--改行を反映させる-->
       <div id="diary-comment">
         <%= render 'public/diary_comments/comment_area', diary_comments: diary_comments, group: group, diary: diary  %>
@@ -26,7 +26,7 @@
     </div>
   <% end %>
 
-  <div class="col-md-7">
+  <div class="col-md-7 mt-4 mt-md-0">
     <%= form_with(model: [group, diary, comment_new], url: group_diary_diary_comments_path({group_id: group, diary_id: diary.id})) do |f| %>
       <div class="comment-error">
         <%= render 'layouts/errors', obj: comment_new %>

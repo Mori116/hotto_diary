@@ -1,33 +1,35 @@
 <div class="container">
   <h2 class="page-title">グループ作成</h2>
-  <div class="row">
-    <div class="mx-auto mt-5">
 
-      <%= form_with model: @group, local: true do |f| %>
-      <%= render 'layouts/errors', obj: @group %>
-        <table>
-          <tr>
-            <td><%= f.label :name, "グループ名" %></td>
-            <td><%= f.text_field :name %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :image, 'グループ画像', class: "my-2" %></td>
-            <td><%= f.attachment_field :image, class: "my-2" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :password, "パスワード（6文字以上）" %></td>
-            <td><%= f.password_field :password, autocomplete: "new-password" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :password_confirmation, "パスワード（確認用）" %></td>
-            <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "my-2" %></td>
-          </tr>
-        </table>
+  <%= form_with model: @group, local: true do |f| %>
+    <%= render 'layouts/errors', obj: @group %>
 
-        <%= f.submit '作成する', class: 'btn btn-orange offset-4' %>
-        <%= link_to "戻る", :back, class: "btn btn-secondary ml-3" %>
-      <% end %>
+      <div class="row mt-5">
+        <div class="col-md-5 text-md-right"><%= f.label :name, "グループ名" %></div>
+        <div class="col-md-7"><%= f.text_field :name, class: "mb-3" %></div>
+      </div>
 
-    </div>
-  </div>
+      <div class="row">
+        <div class="col-md-5 text-md-right"><%= f.label :image, 'グループ画像', class: "mb-md-3" %></div>
+        <div class="col-md-7"><%= f.attachment_field :image, class: "mb-3" %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 text-md-right"><%= f.label :password, "パスワード（6文字以上）", class: "mb-md-3" %></div>
+        <div class="col-md-7"><%= f.password_field :password, autocomplete: "new-password", class: "mb-3" %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 text-md-right"><%= f.label :password_confirmation, "パスワード（確認用）", class: "mb-md-3" %></div>
+        <div class="col-md-7"><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mb-3" %></div>
+      </div>
+
+      <div class="row">
+        <div class="offset-md-5 mt-3">
+          <%= f.submit '作成する', class: 'btn btn-orange ml-3' %>
+          <%= link_to "戻る", :back, class: "btn btn-secondary ml-3" %>
+        </div>
+      </div>
+  <% end %>
+
 </div>
