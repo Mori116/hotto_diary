@@ -4,10 +4,10 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # binding.pry
     @notifications = current_user.passive_notifications.order(created_at: :desc).page(params[:page]).per(10)
-    # current_userの投稿に紐づいた通知一覧
+    # current_userの日記に紐づいた通知一覧。
     current_user.check_notifications
+    # show画面を閲覧するとcheck:trueになる
   end
 
   def join_groups
