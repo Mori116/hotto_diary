@@ -2,17 +2,22 @@
 
 <div class="container">
   <h2 class="page-title">検索結果</h2>
-  <div class="row">
-    <div class="mx-auto mt-5">
 
-      <div class="my-5">
+    <div class="row">
+      <div class="col-md-5 mx-auto my-5">
         <%= form_with url: search_path, method: :get, local: true do |f| %>
           グループ名 <%= f.text_field :name, class: "p-1" %>
           <%= f.submit "検索", class: "p-1" %>
         <% end %>
       </div>
+    </div>
 
-      <p>検索ワード'<%= @value %>'</p>
+    <div class="row">
+      <p class="col-md-2">検索ワード'<%= @value %>'</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
         <table class="table table-bordered bg-light my-3">
           <thead class="table-head">
             <th>作成日</th>
@@ -31,8 +36,11 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+    </div>
 
+    <div class="row mx-auto">
       <%= paginate @groups %>
     </div>
-  </div>
+
 </div>
