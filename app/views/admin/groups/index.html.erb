@@ -1,37 +1,42 @@
 <div class="container">
-    <h2>グループ一覧</h2>
-  <div class="row">
+  <h2>グループ一覧</h2>
 
-    <div class="mt-5 mb-3">
-      <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
-        <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
-        <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
-        <%= f.text_field 'search[value]' %>
-        <%= f.submit "検索", class: "p-1" %>
-      <% end %>
+    <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
+          <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
+          <%= f.text_field 'search[value]', class: "mt-2 mt-md-0" %>
+          <%= f.submit "検索", class: "p-1" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row mt-3">
+      <table class="table bg-light">
+        <thead class="table-head">
+          <th>作成日</th>
+          <th>グループ名</th>
+          <th>参加人数</th>
+          <th>グループ作成者</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td><%= group.created_at.strftime('%Y/%m/%d') %></td>
+              <td><%= group.name %></td>
+              <td><%= group.users.count %></td>
+              <td><%= group.owner.nickname %></td>
+              <td><%= link_to "詳細へ", admin_group_path(group), class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
 
-    <table class="table bg-light">
-      <thead class="table-head">
-        <th>作成日</th>
-        <th>グループ名</th>
-        <th>参加人数</th>
-        <th>グループ作成者</th>
-        <th></th>
-      </thead>
-      <tbody>
-        <% @groups.each do |group| %>
-          <tr>
-            <td><%= group.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= group.name %></td>
-            <td><%= group.users.count %></td>
-            <td><%= group.owner.nickname %></td>
-            <td><%= link_to "詳細へ", admin_group_path(group), class: "btn btn-primary" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="row mx-auto">
+      <%= paginate @groups %>
+    </div>
 
-  </div>
-    <%= paginate @groups %>
 </div>

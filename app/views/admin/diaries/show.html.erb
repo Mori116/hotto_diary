@@ -1,36 +1,37 @@
 <div class="container">
   <h2>日記詳細</h2>
 
-  <div class="row">
-    <div class="mx-auto mt-5">
-      <strong><%= @diary.title %></strong>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="my-5 d-flex">
-      <div class="col-5">
-        <%= attachment_image_tag @diary, :image, size: "350x300", fallback: "no_image.jpg" %>
-      </div>
-      <div class="col-7 bg-light">
-        <%= safe_join(@diary.body.split("\n"),tag(:br)) %>
-        <!--改行を反映させる-->
-        <table class="table bg-light">
-          <% @diary_comments.each do |diary_comment| %>
-            <tr>
-              <td>
-                <%= diary_comment.user.nickname + "：" %>
-                <%= safe_join(diary_comment.comment.split("\n"),tag(:br)) %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
+    <div class="row">
+      <div class="mx-auto mt-5">
+        <strong><%= @diary.title %></strong>
       </div>
     </div>
-  </div>
 
-  <div class="row">
-    <%= link_to "削除する", admin_group_diary_path(@group.id, @diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
-  </div>
+    <div class="row my-5">
+      <div class="col-md-5">
+        <%= attachment_image_tag @diary, :image, size: "350x300", class: "img-fluid mx-auto d-block card", fallback: "no_image.jpg" %>
+      </div>
+      <div class="col-md-7 mt-3 mt-md-0">
+        <div class="card p-1">
+          <%= safe_join(@diary.body.split("\n"),tag(:br)) %><!--改行を反映させる-->
+          <table class="table bg-light">
+            <% @diary_comments.each do |diary_comment| %>
+              <tr>
+                <td>
+                  <%= diary_comment.user.nickname + "：" %>
+                  <%= safe_join(diary_comment.comment.split("\n"),tag(:br)) %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="offset-md-1">
+        <%= link_to "削除する", admin_group_diary_path(@group.id, @diary.id), method: :delete, class: "btn btn-danger ml-3 ml-md-0", "data-confirm" => "本当に消しますか？" %>
+      </div>
+    </div>
 
 </div>
