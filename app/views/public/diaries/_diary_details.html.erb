@@ -34,9 +34,19 @@
 
 <% if diary.user == current_user %>
   <div class="row">
-    <div class="col-md-5 mt-4 text-left">
+    <div class="col-md-6 mt-5 text-left">
       <%= link_to "編集する", edit_group_diary_path(group.id, diary.id), class: "btn btn-blue mr-3" %>
       <%= link_to "削除する", group_diary_path(group.id, diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
     </div>
+    <div class="col-md-6 mt-5 text-right">
+      <%= link_to "日記一覧へ", group_diaries_path(group.id), class: "btn btn-secondary px-3" %>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="mt-5 mx-auto">
+      <%= link_to "日記一覧へ", group_diaries_path(group.id), class: "btn btn-secondary px-5" %>
+    </div>
   </div>
 <% end %>
+
