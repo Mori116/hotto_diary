@@ -1,5 +1,6 @@
 <div class="container">
   <h2 class="page-title">マイページ</h2>
+
   <div class="row">
     <div class="col-md-6 mt-5">
       <h3>登録情報</h3>
@@ -33,7 +34,10 @@
         <% else %>
           <p>通知はありません。</p>
         <% end %>
-        <%= paginate @notifications %>
+        <div class="mx-auto">
+          <%= paginate @notifications %>
+        </div>
     </div>
+
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="container">
-    <h2 class="page-title">グループ検索</h2>
+  <h2 class="page-title">グループ検索</h2>
 
     <div class="row">
       <div class="col-md-5 mx-auto my-5">
@@ -20,26 +20,30 @@
     </div>
 
     <div class="row">
-      <table class="table table-bordered bg-light my-3">
-        <thead class="table-head">
-          <th>作成日</th>
-          <th>グループ名</th>
-          <th>参加人数</th>
-          <th></th>
-        </thead>
-        <tbody>
-          <% @groups.each do |group| %>
-            <tr>
-              <td><%= group.created_at.strftime('%Y/%m/%d') %></td>
-              <td><%= group.name %></td>
-              <td><%= group.users.size %></td>
-              <td class="text-center"><%= link_to "詳細へ", group_path(group), class: "btn btn-orange" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="col-md-12">
+        <table class="table table-bordered bg-light my-3">
+          <thead class="table-head">
+            <th>作成日</th>
+            <th>グループ名</th>
+            <th>参加人数</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <% @groups.each do |group| %>
+              <tr>
+                <td><%= group.created_at.strftime('%Y/%m/%d') %></td>
+                <td><%= group.name %></td>
+                <td><%= group.users.size %></td>
+                <td class="text-center"><%= link_to "詳細へ", group_path(group), class: "btn btn-orange" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
 
+    <div class="row mx-auto">
+      <%= paginate @groups %>
+    </div>
 
-  <%= paginate @groups %>
 </div>

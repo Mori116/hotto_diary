@@ -107,8 +107,12 @@ strong {
 }
 
 .message-title {
-  font-size: 1.5em;
+  font-size: 30px;
   font-weight: bold;
+}
+
+.message {
+  font-size: 15px;
 }
 
 .line-style {
@@ -150,3 +154,16 @@ strong {
   border-color: black;
 }
 // ここまで
+
+
+@media screen and (max-width:425px) {
+
+ .message-title {
+  font-size: 18px;
+  }
+
+  .message {
+    font-size: 10px;
+  }
+
+}

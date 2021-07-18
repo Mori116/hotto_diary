@@ -16,14 +16,14 @@
 
     <div class="row">
       <div class="col-md-4 text-md-right">内容</div>
-      <div class="col-md-8"><%= f.text_area :body, class: "ml-md-2 my-2 p-1", size: "60x20" %></div>
+      <div class="col-md-8"><%= f.text_area :body, class: "form-control ml-md-2 my-2", size: "50x20" %></div>
     </div>
 
     <div class="row">
       <div class="offset-md-4">
-        <%= f.radio_button :status, :false, class: "ml-4" %>公開
+        <%= f.radio_button :status, :false, class: "ml-md-4" %>公開
         <%= f.radio_button :status, :true, class: "ml-3" %>非公開
-        <p class="small ml-4">
+        <p class="small ml-md-4">
           ※非公開にするとグループ作成者のみ閲覧可能になり、<br>
           グループ参加者は閲覧不可となります。
         </p>

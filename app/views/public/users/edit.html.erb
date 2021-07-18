@@ -8,9 +8,11 @@
         <div class="col-md-4 text-md-right">
           <%= f.label "お名前" %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-3">
           <%= f.label :last_name, "(姓)" %>
           <%= f.text_field :last_name, size: 20, class: "mb-3 ml-md-3" %>
+        </div>
+        <div class="col-md-5">
           <%= f.label :first_name, "(名)", class: "ml-md-2" %>
           <%= f.text_field :first_name, size: 20, class: "mb-3 ml-md-3" %>
         </div>
@@ -20,10 +22,11 @@
         <div class="col-md-4 text-md-right">
           <%= f.label "フリガナ" %>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-3">
           <%= f.label :last_name_kana, "(セイ)" %>
           <%= f.text_field :last_name_kana, size: 20, class: "mb-3" %>
-
+        </div>
+        <div class="col-md-5">
           <%= f.label :first_name_kana, "(メイ)", class: "ml-md-2" %>
           <%= f.text_field :first_name_kana, size: 20, class: "mb-3" %>
         </div>

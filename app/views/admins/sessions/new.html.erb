@@ -2,28 +2,24 @@
 
 <div class="container">
   <h2>管理者ログイン</h2>
-  <div class="row">
-    <div class="mx-auto mt-5">
 
-      <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
-        <table>
-          <tbody>
-            <tr>
-              <td><%= f.label :email, "メールアドレス", class: "mr-2" %></td>
-              <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30 %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :password, "パスワード", class: "mr-2" %></td>
-              <td><%= f.password_field :password, autocomplete: "current-password", size: 30 %></td>
-            </tr>
-          </tbody>
-        </table>
+    <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
 
-        <div class="offset-5 mt-3">
-          <%= f.submit "ログイン", class: "btn btn-primary" %>
+      <div class="row mt-5">
+        <div class="col-md-5 text-md-right"><%= f.label :email, "メールアドレス", class: "mb-md-3" %></div>
+        <div class="col-md-7"><%= f.email_field :email, autofocus: true, autocomplete: "email", size: 30, class: "mb-3 p-1" %></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 text-md-right"><%= f.label :password, "パスワード" %></div>
+        <div class="col-md-7"><%= f.password_field :password, autocomplete: "current-password", size: 30, class: "p-1" %></div>
+      </div>
+
+      <div class="row">
+        <div class="mx-auto mt-3">
+          <%= f.submit "ログイン", class: "btn btn-primary px-5" %>
         </div>
-      <% end %>
+      </div>
+    <% end %>
 
-    </div>
-  </div>
 </div>
