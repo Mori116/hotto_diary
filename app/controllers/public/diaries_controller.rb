@@ -7,8 +7,8 @@ class Public::DiariesController < ApplicationController
     @diaries = @group.diaries.user_order_desc_per_10(params[:page])
     @members = @group.group_users.joins(:user).where(users: {is_deleted: false})
     # 有効ステータスのユーザの日記のみ表示させる
-    @group_owner = User.find(@group.owner_id)
-    # グループ作成者のステータス確認。ビューにて条件分岐。
+    @group_owner = @group.owner
+    # グループ作成者のステータス確認、ビューにて条件分岐
   end
 
   def new
@@ -30,9 +30,8 @@ class Public::DiariesController < ApplicationController
   def show
     @group = Group.find(params[:group_id])
     @diary = Diary.find(params[:id])
-    @owner = @group.owner_id
-    @group_owner = User.find(@owner)
-    # グループ作成者のステータス確認。ビューにて条件分岐。
+    @group_owner = @group.owner
+    # グループ作成者のステータス確認、ビューにて条件分岐
     @comment_new = DiaryComment.new
     @diary_comments = @diary.diary_comments
   end
