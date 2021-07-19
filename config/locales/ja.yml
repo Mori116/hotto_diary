@@ -72,7 +72,6 @@ ja:
       diary_comment:
         comment: コメント
 
-ja:
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>
