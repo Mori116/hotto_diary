@@ -17,13 +17,19 @@
               <tr>
                 <td><%= diary.created_at.strftime('%Y/%m/%d') %></td>
                 <td><%= diary.title %></td>
-                <td><%= diary.user.nickname %></td>
+                <td><%= link_to diary.user.nickname, admin_user_path(diary.user_id) %></td>
                 <td><%= diary.diary_comments.count %></td>
                 <td class="text-center align-middle"><%= link_to "閲覧する", admin_group_diary_path(@group.id, diary.id), class: "btn btn-primary" %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mx-auto">
+        <%= paginate @diaries %>
       </div>
     </div>
 
@@ -41,7 +47,5 @@
         </table>
       </div>
     </div>
-
-    <p><%= paginate @diaries %></p>
 
 </div>
