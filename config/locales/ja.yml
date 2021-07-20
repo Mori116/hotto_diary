@@ -66,6 +66,7 @@ ja:
       group:
         name: グループ名
         password: パスワード
+        password_confirmation: パスワード（確認用）
       diary:
         title: タイトル
         body: 日記内容
