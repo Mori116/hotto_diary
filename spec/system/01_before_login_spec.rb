@@ -4,6 +4,8 @@ require 'rails_helper'
 
 describe 'ユーザログイン前のテスト' do
   describe 'トップ画面のテスト' do
+    let!(:news) { create(:news) }
+
     before do
       visit root_path
       # 以降、ログイン前の画面共通化（トップ画面のテスト内）
@@ -12,6 +14,10 @@ describe 'ユーザログイン前のテスト' do
     context '表示内容の確認' do
       it 'URLが正しい' do
         expect(current_path).to eq '/'
+      end
+      it 'お知らせが表示される' do
+        expect(page).to have_content 'お知らせ'
+        expect(page).to have_content news.body
       end
       it 'Log inリンクが表示される: 左上から4番目のリンクが「Log in」である' do
         log_in_link = find_all('a')[4].native.inner_text
