@@ -133,6 +133,15 @@ describe 'ユーザログイン前のテスト' do
       end
     end
 
+    context 'リンクの内容を確認' do
+      subject { current_path }
+
+      it '「こちら」を押すと、ログイン画面に遷移する' do
+        click_link 'こちら'
+        is_expected.to eq '/users/sign_in'
+      end
+    end
+
     context '新規登録成功のテスト' do
       before do
         fill_in 'user[last_name]', with: Faker::Lorem.characters(number: 10)
