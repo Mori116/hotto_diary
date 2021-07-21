@@ -37,7 +37,7 @@ RSpec.describe User, 'Userモデルに関するテスト', type: :model do
         expect(user).to be_invalid
         expect(user.errors[:last_name_kana]).to include("を入力してください")
       end
-      it 'カタカナであること' do
+      it 'カタカナでない場合にエラーメッセージが返ってきているか' do
         user = build(:user, last_name_kana: 'kana')
         expect(user).to be_invalid
         expect(user.errors[:last_name_kana]).to include("は不正な値です")
