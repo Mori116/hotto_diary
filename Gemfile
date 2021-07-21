@@ -52,11 +52,10 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -71,23 +70,24 @@ gem "refile-mini_magick"
 
 gem 'jquery-rails'
 
-# ページネーション
 gem 'kaminari','~> 1.2.1'
+# ページネーション
 
-# カレンダー
 gem "simple_calendar", "~> 2.4"
+# カレンダー
 
-# 日本語化
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n', '~> 5.1'
+# 日本語化
 
-# リーダブルコード確認
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
+# リーダブルコード確認
 
 gem 'dotenv-rails'
 # 環境変数を管理する
+
 group :production do
   gem 'mysql2'
 end
