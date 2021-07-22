@@ -4,7 +4,7 @@ class Admin::DiariesController < ApplicationController
 
   def index
     @group = Group.find(params[:group_id])
-    @diaries = @group.diaries.all.order(created_at: :desc).page(params[:page]).per(10)
+    @diaries = @group.diaries.order_desc_per_10(params[:page])
     @members = @group.group_users
   end
 
