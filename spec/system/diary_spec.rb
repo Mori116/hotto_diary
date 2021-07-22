@@ -5,9 +5,11 @@ require 'rails_helper'
 describe '交換日記のテスト' do
   let(:user) { create(:user) }
   let!(:other_user) { create(:user) }
+  let!(:true_user) { create(:user, is_deleted: true) }
   let!(:group) { create(:group, owner_id: user.id) }
   let!(:diary) { create(:diary, user: user, group: group) }
   let!(:other_diary) { create(:diary, user: other_user, group: group) }
+  let!(:true_user_diary) { create(:diary, user: true_user, group: group) }
   # 同じグループでの交換日記
 
   before do
@@ -50,6 +52,9 @@ describe '交換日記のテスト' do
       it '自分と他人のニックネームが表示される' do
         expect(page).to have_content diary.user.nickname
         expect(page).to have_content other_diary.user.nickname
+      end
+      it '退会済のユーザの日記は表示されない' do
+        expect(page).not_to have_content true_user_diary.title
       end
     end
 
