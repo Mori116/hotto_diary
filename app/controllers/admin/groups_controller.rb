@@ -3,11 +3,11 @@ class Admin::GroupsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @groups = Group.all.order(created_at: :desc).page(params[:page]).per(10)
+    @groups = Group.all.order_desc_per_10
   end
 
   def diaries
-    @diaries = Diary.all.order(created_at: :desc).page(params[:page]).per(10)
+    @diaries = Diary.all.order_desc_per_10
   end
   # 全日記一覧画面
 
