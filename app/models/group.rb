@@ -6,8 +6,7 @@ class Group < ApplicationRecord
   has_many :users, through: :group_users
   has_many :diaries
 
-  validates :name, :password_confirmation, presence: true
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :name, presence: true
 
   attachment :image
 
