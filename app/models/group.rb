@@ -7,6 +7,7 @@ class Group < ApplicationRecord
   has_many :diaries
 
   validates :name, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   attachment :image
 

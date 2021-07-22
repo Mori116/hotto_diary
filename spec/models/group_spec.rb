@@ -27,6 +27,11 @@ RSpec.describe Group, 'Groupモデルに関するテスト', type: :model do
         expect(group).to be_invalid
         expect(group.errors[:password]).to include("を入力してください")
       end
+      it '6文字以下の場合にエラーメッセージが返ってきているか' do
+        group = build(:group, password: "00000", password_confirmation: "00000")
+        expect(group).to be_invalid
+        expect(group.errors[:password]).to include("は6文字以上で入力してください")
+      end
     end
 
     context 'password_confirmationカラム' do
