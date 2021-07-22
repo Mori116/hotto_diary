@@ -38,7 +38,7 @@ RSpec.describe Group, 'Groupモデルに関するテスト', type: :model do
       it 'パスワードが入力されていても、本カラムが空白の場合にエラーメッセージが返ってきているか' do
         group = build(:group, password: "password", password_confirmation: "")
         expect(group).to be_invalid
-        expect(group.errors[:password_confirmation]).to include("とパスワードの入力が一致しません", "を入力してください")
+        expect(group.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
       end
     end
   end

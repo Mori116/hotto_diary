@@ -6,8 +6,9 @@ class Group < ApplicationRecord
   has_many :users, through: :group_users
   has_many :diaries
 
-  validates :name, :password_confirmation, presence: true
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :name, presence: true
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  # allow_nil: trueによって、新規作成時は6文字以上のバリデーションが掛かるが、編集時はバリデーションが掛からなくなる
 
   attachment :image
 
