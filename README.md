@@ -61,12 +61,12 @@ _UI Flows_<br>
 - Bootstrap 4.5
 - HTML
 - CSS
-- JavaScript
 
 ## バックエンド
 
 - Ruby 2.6.3
 - Rails 5.2.5
+- JavaScript
 
 ## その他主な使用技術
 
