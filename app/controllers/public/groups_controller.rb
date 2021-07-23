@@ -3,7 +3,7 @@ class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @false_user = User.where(is_deleted: false).pluck(:id)
+    @false_user = User.not_deleted.pluck(:id)
     @false_owner = Group.where(owner_id: @false_user)
     @groups = @false_owner.includes(:users).where(users: {is_deleted: false}).order_desc_per_10(params[:page])
     # 有効ステータスのグループ作成者のグループのみ表示させる

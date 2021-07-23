@@ -11,7 +11,7 @@
         </tr>
         <tr>
           <th>フリガナ</th>
-          <td><%= @user.last_name_kana %><%= @user.first_name_kana %></td>
+          <td><%= @user.full_name_kana %></td>
         </tr>
         <tr>
           <th>ニックネーム（あだ名）</th>
@@ -38,6 +38,6 @@
           <%= paginate @notifications %>
         </div>
     </div>
-
   </div>
+
 </div>
