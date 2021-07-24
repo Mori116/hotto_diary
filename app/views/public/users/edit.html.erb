@@ -1,67 +1,67 @@
 <div class="container">
   <h2 class="page-title">ユーザ情報編集</h2>
 
-  <%= form_with model: @user, local: true do |f| %>
-    <%= render 'layouts/errors', obj: @user %>
+    <%= form_with model: @user, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @user %>
 
-      <div class="row mt-5">
-        <div class="col-md-4 text-md-right">
-          <%= f.label "お名前" %>
+        <div class="row mt-5">
+          <div class="col-md-4 text-md-right">
+            <%= f.label "お名前" %>
+          </div>
+          <div class="col-md-3">
+            <%= f.label :last_name, "(姓)" %>
+            <%= f.text_field :last_name, size: 20, class: "mb-3 ml-md-3" %>
+          </div>
+          <div class="col-md-4">
+            <%= f.label :first_name, "(名)", class: "ml-md-2" %>
+            <%= f.text_field :first_name, size: 20, class: "mb-3 ml-md-3" %>
+          </div>
         </div>
-        <div class="col-md-3">
-          <%= f.label :last_name, "(姓)" %>
-          <%= f.text_field :last_name, size: 20, class: "mb-3 ml-md-3" %>
-        </div>
-        <div class="col-md-4">
-          <%= f.label :first_name, "(名)", class: "ml-md-2" %>
-          <%= f.text_field :first_name, size: 20, class: "mb-3 ml-md-3" %>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-4 text-md-right">
-          <%= f.label "フリガナ" %>
+        <div class="row">
+          <div class="col-md-4 text-md-right">
+            <%= f.label "フリガナ" %>
+          </div>
+          <div class="col-md-3">
+            <%= f.label :last_name_kana, "(セイ)" %>
+            <%= f.text_field :last_name_kana, size: 20, class: "mb-3" %>
+          </div>
+          <div class="col-md-4">
+            <%= f.label :first_name_kana, "(メイ)", class: "ml-md-2" %>
+            <%= f.text_field :first_name_kana, size: 20, class: "mb-3" %>
+          </div>
         </div>
-        <div class="col-md-3">
-          <%= f.label :last_name_kana, "(セイ)" %>
-          <%= f.text_field :last_name_kana, size: 20, class: "mb-3" %>
-        </div>
-        <div class="col-md-4">
-          <%= f.label :first_name_kana, "(メイ)", class: "ml-md-2" %>
-          <%= f.text_field :first_name_kana, size: 20, class: "mb-3" %>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-4 text-md-right">
-          <%= f.label :nickname, "ニックネーム（あだ名）" %>
+        <div class="row">
+          <div class="col-md-4 text-md-right">
+            <%= f.label :nickname, "ニックネーム（あだ名）" %>
+          </div>
+          <div class="col-md-8">
+            <%= f.text_field :nickname, size: 20, class: "mb-3 ml-md-5" %>
+          </div>
         </div>
-        <div class="col-md-8">
-          <%= f.text_field :nickname, size: 20, class: "mb-3 ml-md-5" %>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-4 text-md-right">
-          <%= f.label :email, "メールアドレス" %>
+        <div class="row">
+          <div class="col-md-4 text-md-right">
+            <%= f.label :email, "メールアドレス" %>
+          </div>
+          <div class="col-md-8">
+            <%= f.email_field :email, size: 30, class: "mb-3 ml-md-5" %>
+          </div>
         </div>
-        <div class="col-md-8">
-          <%= f.email_field :email, size: 30, class: "mb-3 ml-md-5" %>
+
+        <div class="row">
+          <div class="col-md-2 mx-auto mt-3">
+            <%= f.submit "変更内容を保存する", class: "btn btn-orange" %>
+          </div>
         </div>
-      </div>
+    <% end %>
 
     <div class="row">
-      <div class="col-md-2 mx-auto mt-3">
-        <%= f.submit "変更内容を保存する", class: "btn btn-orange" %>
-      </div>
+      <p class="offset-2 mt-5">
+        <%= link_to "退会する", quit_user_path(@user), class: "btn btn-danger mr-2" %>
+        <%= link_to "マイページへ戻る", user_path(@user), class: "btn btn-secondary" %>
+      </p>
     </div>
-  <% end %>
-
-  <div class="row">
-    <p class="offset-2 mt-5">
-      <%= link_to "退会する", quit_user_path(@user), class: "btn btn-danger mr-2" %>
-      <%= link_to "マイページへ戻る", user_path(@user), class: "btn btn-secondary" %>
-    </p>
-  </div>
 
 </div>

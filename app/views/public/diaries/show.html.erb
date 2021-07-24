@@ -1,33 +1,33 @@
 <div class="container">
   <h2 class="page-title">日記詳細</h2>
 
-  <% if @group_owner.is_deleted %>
-    <div class="row">
-      <div class="mx-auto mt-5">
-        <p class="text-danger">グループ作成者が退会済みのため、利用できません。</p>
-      </div>
-    </div>
-
-  <% elsif @diary.user.is_deleted %>
-    <div class="row">
-      <div class="mx-auto mt-5">
-        <p class="text-danger">ユーザが退会済みのため、日記の閲覧ができません。</p>
-      </div>
-    </div>
-
-  <% elsif @diary.status %>
-    <% if (@group.owner_id == current_user.id) || (@diary.user_id == current_user.id) %>
-      <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
-    <% else %>
-     <div class="row">
+    <% if @group_owner.is_deleted %>
+      <div class="row">
         <div class="mx-auto mt-5">
-          <p>本日記は非公開設定されています。</p>
+          <p class="text-danger">グループ作成者が退会済みのため、利用できません。</p>
         </div>
       </div>
-    <% end %>
 
-  <% else %>
-    <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
-  <% end %>
+    <% elsif @diary.user.is_deleted %>
+      <div class="row">
+        <div class="mx-auto mt-5">
+          <p class="text-danger">ユーザが退会済みのため、日記の閲覧ができません。</p>
+        </div>
+      </div>
+
+    <% elsif @diary.status %>
+      <% if (@group.owner_id == current_user.id) || (@diary.user_id == current_user.id) %>
+        <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
+      <% else %>
+       <div class="row">
+          <div class="mx-auto mt-5">
+            <p>本日記は非公開設定されています。</p>
+          </div>
+        </div>
+      <% end %>
+
+    <% else %>
+      <%= render 'public/diaries/diary_details', diary: @diary, group: @group, diary_comments: @diary_comments, comment_new: @comment_new %>
+    <% end %>
 
 </div>
