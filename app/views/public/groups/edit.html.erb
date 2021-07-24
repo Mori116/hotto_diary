@@ -1,32 +1,42 @@
 <div class="container">
   <h2 class="page-title">グループ編集</h2>
 
-      <%= form_with model: @group, local: true do |f| %>
-        <%= render 'layouts/errors', obj: @group %>
+    <%= form_with model: @group, local: true do |f| %>
+      <%= render 'layouts/errors', obj: @group %>
 
-        <div class="row mt-5">
-          <div class="col-md-5 text-md-right"><%= f.label :name, "グループ名" %></div>
-          <div class="col-md-7"><%= f.text_field :name, class: "mb-3" %></div>
+      <div class="row mt-5">
+        <div class="col-md-5 text-md-right">
+          <%= f.label :name, "グループ名" %>
         </div>
-
-        <div class="row">
-          <div class="col-md-5 text-md-right"><%= f.label :image, "グループ画像" %></div>
-          <div class="col-md-7"><%= f.attachment_field :image %></div>
-        </div>
-
-        <div class="row">
-          <div class="offset-md-5 mt-2">
-              <%= f.submit "変更内容を保存する", class: "btn btn-orange mt-3 ml-3 ml-md-0" %>
-              <%= link_to "戻る", group_path(@group), class: "btn btn-secondary mt-3 ml-3" %>
-          </div>
-        </div>
-      <% end %>
-
-      <div class="row">
-        <div class="offset-md-5 mt-3">
-          <%= link_to "削除する", group_path(@group), method: :delete, class: 'btn btn-danger  ml-3 ml-md-0', "data-confirm" => "本当に消しますか？" %>
-          <p class="small  ml-3 ml-md-0">※投稿した日記が閲覧できなくなります。</p>
+        <div class="col-md-7">
+          <%= f.text_field :name, class: "mb-3" %>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-5 text-md-right">
+          <%= f.label :image, "グループ画像" %>
+        </div>
+        <div class="col-md-7">
+          <%= f.attachment_field :image %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="offset-md-5 mt-2">
+          <%= f.submit "変更内容を保存する", class: "btn btn-orange mt-3 ml-3 ml-md-0" %>
+          <%= link_to "戻る", group_path(@group), class: "btn btn-secondary mt-3 ml-3" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="offset-md-5 mt-3">
+        <%= link_to "削除する", group_path(@group), method: :delete, class: 'btn btn-danger  ml-3 ml-md-0', "data-confirm" => "本当に消しますか？" %>
+        <p class="small  ml-3 ml-md-0">
+          ※投稿した日記が閲覧できなくなります。
+        </p>
+      </div>
+    </div>
 
 </div>

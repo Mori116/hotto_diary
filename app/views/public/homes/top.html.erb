@@ -1,6 +1,7 @@
 <p id="alert"><%= alert %></p>
 
 <div class="container">
+
   <div class="row">
     <div class="top-visual col-md-12">
       <div class="main-visual">
@@ -8,14 +9,12 @@
       </div>
     </div>
   </div>
-</div>
 
-<% if admin_signed_in? %>
-  <div class="container">
+  <% if admin_signed_in? %>
     <div class="row">
       <div class="d-flex">
         <h2 class="mt-5">お知らせ</h2>
-        <%= link_to "新規作成", new_admin_news_path, class: "btn btn-success mt-5 mb-3 ml-4" %>
+          <%= link_to "新規作成", new_admin_news_path, class: "btn btn-success mt-5 mb-3 ml-4" %>
       </div>
     </div>
 
@@ -32,17 +31,14 @@
               </tr>
             <% end %>
           </tbody>
-          <%= paginate @news %>
         </table>
       </div>
     </div>
-  </div>
 
-<% else %>
-  <div class="container">
+  <% else %>
     <div class="row">
       <div class="col-md-5">
-      <h2 class="mt-5">お知らせ</h2>
+        <h2 class="mt-5">お知らせ</h2>
         <table class="table table-bordered">
           <tbody>
             <% @news.each do |news| %>
@@ -54,20 +50,20 @@
               </tr>
             <% end %>
           </tbody>
-          <%= paginate @news %>
         </table>
       </div>
 
       <div class="col-md-7 text-center">
         <div class="mt-5 mx-auto">
           <h4>新規登録済の方はこちら</h4>
-          <%= link_to "ログインする", new_user_session_path, class: "btn btn-orange mt-1" %>
+            <%= link_to "ログインする", new_user_session_path, class: "btn btn-orange mt-1" %>
         </div>
         <div class="mt-4 mx-auto">
           <h4>未登録の方はこちら</h4>
-          <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-orange mt-1" %>
+            <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-orange mt-1" %>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+
+</div>

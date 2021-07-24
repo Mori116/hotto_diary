@@ -38,6 +38,10 @@ class User < ApplicationRecord
     self.last_name + self.first_name
   end
 
+  def full_name_kana
+    self.last_name_kana + self.first_name_kana
+  end
+
   def check_notifications
     passive_notifications.unchecked.each do |notification|
       notification.update(checked: true)

@@ -23,13 +23,12 @@
     <%= render 'layouts/errors', obj: comment_new %>
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-12 mt-4 mt-md-0 text-right">
     <%= form_with(model: [group, diary, comment_new], url: group_diary_diary_comments_path({group_id: group, diary_id: diary.id})) do |f| %>
-        <%= f.text_area :comment, class: "form-control", size: "50x5" %><br>
-      <div>
-        <%= f.submit "コメントする", class: "btn btn-orange" %>
-      </div>
+      <%= f.text_area :comment, class: "form-control", size: "50x5" %><br>
+      <%= f.submit "コメントする", class: "btn btn-orange" %>
     <% end %>
   </div>
 </div>

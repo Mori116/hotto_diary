@@ -6,10 +6,14 @@
     <% if notification.visited_id != visitor.id %>
       <tr>
         <td>
-            <%= visitor.nickname %>が<%= link_to 'あなたの日記', group_diary_path(diary.group_id, diary.id) %>にコメントしました。
-          <span><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span><br>
+          <%= visitor.nickname %>が<%= link_to 'あなたの日記', group_diary_path(diary.group_id, diary.id) %>にコメントしました。
+          <span>
+            <%= " (#{time_ago_in_words(notification.created_at)} 前)" %>
+          </span><br>
           <% if notification.diary_comment.comment %>
-            <p class="text-left" style="color: #C0C0C0;"><%= notification.diary_comment.comment %></p>
+            <p class="text-left" style="color: #C0C0C0;">
+              <%= notification.diary_comment.comment %>
+            </p>
           <% end %>
         </td>
       </tr>

@@ -21,4 +21,9 @@ class Group < ApplicationRecord
     # 作成日を降順で１０レコードずつ表示。
   }
 
+  scope :user_order_desc_per_10, -> page {
+    includes(:users).where(users: {is_deleted: false}).order(created_at: :desc).page(page).per(10)
+    # 有効ステータスのユーザを取得。作成日を降順で１０レコードずつ表示。searchコントローラで使用。
+  }
+
 end
