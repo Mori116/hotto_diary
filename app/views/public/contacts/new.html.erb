@@ -9,7 +9,7 @@
           <%= f.label :name, "お名前" %>
         </div>
         <div class="col-md-6">
-          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+          <%= f.text_field :name, autofocus: true, :placeholder => "例）令和太郎", class: "form-control" %>
         </div>
       </div>
 
@@ -18,7 +18,7 @@
           <%= f.label :email, "メールアドレス", class: "my-3" %>
         </div>
         <div class="col-md-6">
-          <%= f.text_field :email, class: "form-control my-3" %>
+          <%= f.text_field :email, :placeholder => "例）sample@gmail.com", class: "form-control my-3" %>
         </div>
       </div>
 
@@ -27,7 +27,7 @@
           <%= f.label :message, "お問い合わせ内容" %>
         </div>
         <div class="col-md-6">
-          <%= f.text_area :message, size: "50x10", class: "form-control" %>
+          <%= f.text_area :message, :placeholder => "例）○○機能が欲しい等", size: "50x10", class: "form-control" %>
         </div>
       </div>
 
