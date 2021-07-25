@@ -17,15 +17,21 @@
       <%= render 'layouts/header' %>
     </div>
 
-      <main>
-          <p id="notice"><%= notice %></p>
-          <%= yield %>
-      </main>
+    <main>
+      <p id="notice"><%= notice %></p>
+      <%= yield %>
+    </main>
 
-    </div>
     <footer class="fixed-bottom bg-light">
       <div class='container'>
-          <p class="text-center">©2021 HottoDiary</p>
+        <div class='row'>
+          <div class='col-md-6'>
+            <div class="text-left">©2021 HottoDiary</div>
+          </div>
+          <div class='col-md-6'>
+            <div class="text-right"><%= link_to "お問い合わせ", new_contact_path, class: "btn btn-blue" %></div>
+          </div>
+        </div>
       </div>
     </footer>
   </body>
