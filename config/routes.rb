@@ -37,6 +37,9 @@ Rails.application.routes.draw do
 
     get 'search' => "searches#search"
 
+    resources :contacts, only: [:new, :create]
+    get 'contacts/complete' => "contacts#complete"
+
   end
 
   # 管理者側
