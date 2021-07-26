@@ -15,11 +15,15 @@
       <div class="col-md-7 mt-3 mt-md-0">
         <div class="card p-1">
           <%= safe_join(@diary.body.split("\n"),tag(:br)) %><!--改行を反映させる-->
-          <table class="table bg-light">
+          <table class="table">
             <% @diary_comments.each do |diary_comment| %>
               <tr>
                 <td>
-                  <%= diary_comment.user.nickname + "：" %>
+                  <% if diary_comment.user.is_deleted %>
+                    <%= diary_comment.user.nickname + "(退会済)：" %>
+                  <% else %>
+                    <%= diary_comment.user.nickname + "：" %>
+                  <% end %>
                   <%= safe_join(diary_comment.comment.split("\n"),tag(:br)) %>
                 </td>
               </tr>

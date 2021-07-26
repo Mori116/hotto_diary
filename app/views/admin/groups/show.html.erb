@@ -7,7 +7,7 @@
       </div>
       <div class="col-md-6">
         <div class="mt-3 mt-md-0">グループ名：<%= @group.name %></div>
-        <div class="my-3">参加人数：<%= @group.users.size %></div>
+        <div class="my-3">参加人数（退会人数）：<%= @group.users.not_deleted.count %>（<%= @group.users.deleted.count %>）</div>
         <div>グループ作成者：<%= @group.owner.nickname %></div>
         <div class="mt-3">グループ作成日：<%= @group.created_at.strftime('%Y/%m/%d') %></div>
       </div>

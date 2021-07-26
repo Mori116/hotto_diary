@@ -28,7 +28,11 @@
               <tr>
                 <td><%= diary.created_at.strftime('%Y/%m/%d') %></td>
                 <td><%= diary.title %></td>
-                <td><%= diary.user.nickname %></td>
+                  <% if diary.user.is_deleted %>
+                    <td><%= diary.user.nickname + "(退会済)" %></td>
+                  <% else %>
+                    <td><%= diary.user.nickname %></td>
+                  <% end %>
                 <td><%= diary.diary_comments.count %></td>
                 <td class="text-center"><%= link_to "閲覧する", admin_group_diary_path(group_id, diary.id), class: "btn btn-primary" %></td>
               </tr>

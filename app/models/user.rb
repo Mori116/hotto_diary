@@ -19,6 +19,7 @@ class User < ApplicationRecord
   # 相手からの通知
 
   scope :not_deleted, -> { where(is_deleted: false) }
+  scope :deleted, -> { where(is_deleted: true) }
 
   validates :last_name, :first_name, :nickname, presence: true
   validates :last_name_kana, :first_name_kana, presence: true, format: { with: /\p{katakana}/ }
