@@ -1,20 +1,21 @@
 <div class="container">
   <h2>お知らせ作成</h2>
-  <div class="row">
-    <div class="mx-auto mt-5">
+    <div class="row">
+      <div class="mx-auto mt-5">
 
-      <%= form_with model: @news, url: admin_news_index_path, local: true do |f| %>
-      <%= render 'layouts/errors', obj: @news %>
-        <div class="d-flex align-items-start">
-          お知らせ内容
-          <%= f.text_area :body, class: "form-control ml-3 p-1", size: "30x3" %>
-        </div>
-        <div class="offset-5 mt-3">
-          <%= f.submit "投稿する", class: "btn btn-success mr-3" %>
-          <%= link_to "戻る", :back, class: "btn btn-secondary" %>
-        </div>
-      <% end %>
+        <%= form_with model: @news, url: admin_news_index_path, local: true do |f| %>
+          <%= render 'layouts/errors', obj: @news %>
 
+          <div class="d-flex align-items-start">
+            お知らせ内容
+            <%= f.text_area :body, class: "form-control ml-3 p-1", size: "30x3" %>
+          </div>
+          <div class="offset-5 mt-3">
+            <%= f.submit "投稿する", class: "btn btn-success mr-3" %>
+            <%= link_to "戻る", :back, class: "btn btn-secondary" %>
+          </div>
+        <% end %>
+
+      </div>
     </div>
-  </div>
 </div>
