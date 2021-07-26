@@ -17,7 +17,11 @@
               <tr>
                 <td><%= diary.created_at.strftime('%Y/%m/%d') %></td>
                 <td><%= diary.title %></td>
-                <td><%= link_to diary.user.nickname, admin_user_path(diary.user_id) %></td>
+                  <% if diary.user.is_deleted %>
+                    <td><%= link_to diary.user.nickname + "(退会済)", admin_user_path(diary.user_id) %></td>
+                  <% else %>
+                    <td><%= link_to diary.user.nickname, admin_user_path(diary.user_id) %></td>
+                  <% end %>
                 <td><%= diary.diary_comments.count %></td>
                 <td class="text-center align-middle"><%= link_to "閲覧する", admin_group_diary_path(@group.id, diary.id), class: "btn btn-primary" %></td>
               </tr>
@@ -40,7 +44,11 @@
           <tbody>
             <% @members.each do |member| %>
               <tr>
-                <td><%= member.user.nickname %></td>
+                <% if member.user.is_deleted %>
+                  <td><%= member.user.nickname + "(退会済)" %></td>
+                <% else %>
+                  <td><%= member.user.nickname %></td>
+                <% end %>
               </tr>
             <% end %>
           </tbody>
