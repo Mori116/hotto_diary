@@ -4,7 +4,7 @@ class Group < ApplicationRecord
 
   has_many :group_users
   has_many :users, through: :group_users
-  has_many :diaries
+  has_many :diaries, dependent: :destroy
 
   validates :name, presence: true
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
