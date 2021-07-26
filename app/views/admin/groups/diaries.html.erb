@@ -1,16 +1,16 @@
 <div class="container">
-    <h2>日記一覧</h2>
+  <h2>日記一覧</h2>
 
-      <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
-        <div class="row mt-5">
-          <div class="col-md-12">
-            <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
-            <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
-            <%= f.text_field 'search[value]', class: "mt-2 mt-md-0" %>
-            <%= f.submit "検索", class: "p-1" %>
-          </div>
-        </div>
-      <% end %>
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+          <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
+          <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
+          <%= f.text_field 'search[value]', class: "mt-2 mt-md-0" %>
+          <%= f.submit "検索", class: "p-1" %>
+        <% end %>
+      </div>
+    </div>
 
     <div class="row mt-3">
       <div class="col-md-12">

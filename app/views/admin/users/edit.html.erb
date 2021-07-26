@@ -2,7 +2,7 @@
   <h2>ユーザ詳細</h2>
 
     <%= form_with model: @user, url: admin_user_path, local: true do |f| %>
-    <%= render 'layouts/errors', obj: @user %>
+      <%= render 'layouts/errors', obj: @user %>
 
       <div class="row mt-5">
         <div class="col-md-4 text-md-right">

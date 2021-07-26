@@ -4,16 +4,16 @@
   <h2>検索結果</h2>
     <p class="mt-3">検索ワード'<%= @value %>'</p>
 
-    <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
-      <div class="row mt-5">
-        <div class="col-md-12">
-        <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
-        <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
-        <%= f.text_field 'search[value]', class: "mt-2 mt-md-0" %>
-        <%= f.submit "検索", class: "btn btn-sm btn-success" %>
-        </div>
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <%= form_with url: admin_search_path, method: :get, local: true do |f| %>
+          <%= f.select 'search[model]', options_for_select({ "ユーザ(あだ名)" => "user", "グループ名" => "group", "日記タイトル" => "diary" }) %>
+          <%= f.select 'search[how]', options_for_select({ "完全一致" => "match", "部分一致" => "partical"  }) %>
+          <%= f.text_field 'search[value]', class: "mt-2 mt-md-0" %>
+          <%= f.submit "検索", class: "btn btn-sm btn-success" %>
+        <% end %>
       </div>
-    <% end %>
+    </div>
 
 
     <% if @model == "user" %>
@@ -28,18 +28,18 @@
             </thead>
             <tbody>
               <% @datas.each do |data| %>
-              <tr>
-                <td><%= data.created_at.strftime('%Y/%m/%d') %></td>
-                <td><%= link_to data.full_name, admin_user_path(data) %></td>
-                <td><%= data.nickname %></td>
-                <td>
-                  <% if data.is_deleted == true %>
-                    <div class="text-muted"><%= "退会" %></div>
-                  <% else %>
-                    <div class="text-success"><%= "有効" %></div>
-                  <% end %>
-                </td>
-              </tr>
+                <tr>
+                  <td><%= data.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= link_to data.full_name, admin_user_path(data) %></td>
+                  <td><%= data.nickname %></td>
+                  <td>
+                    <% if data.is_deleted == true %>
+                      <div class="text-muted"><%= "退会" %></div>
+                    <% else %>
+                      <div class="text-success"><%= "有効" %></div>
+                    <% end %>
+                  </td>
+                </tr>
               <% end %>
             </tbody>
           </table>
@@ -59,13 +59,13 @@
             </thead>
             <tbody>
               <% @datas.each do |data| %>
-              <tr>
-                <td><%= data.created_at.strftime('%Y/%m/%d') %></td>
-                <td><%= data.name %></td>
-                <td><%= data.users.count %></td>
-                <td><%= data.owner.nickname %></td>
-                <td class="text-center"><%= link_to "詳細へ", admin_group_path(data), class: "btn btn-primary" %></td>
-              </tr>
+                <tr>
+                  <td><%= data.created_at.strftime('%Y/%m/%d') %></td>
+                  <td><%= data.name %></td>
+                  <td><%= data.users.count %></td>
+                  <td><%= data.owner.nickname %></td>
+                  <td class="text-center"><%= link_to "詳細へ", admin_group_path(data), class: "btn btn-primary" %></td>
+                </tr>
               <% end %>
             </tbody>
           </table>
@@ -86,13 +86,13 @@
             <tbody>
               <% @datas.each do |data| %>
                 <% @group = data.group.id %>
-                <tr>
-                  <td><%= data.created_at.strftime('%Y/%m/%d') %></td>
-                  <td><%= data.title %></td>
-                  <td><%= data.user.nickname %></td>
-                  <td><%= data.diary_comments.count %></td>
-                  <td class="text-center"><%= link_to "閲覧する", admin_group_diary_path(@group, data.id), class: "btn btn-primary" %></td>
-                </tr>
+                  <tr>
+                    <td><%= data.created_at.strftime('%Y/%m/%d') %></td>
+                    <td><%= data.title %></td>
+                    <td><%= data.user.nickname %></td>
+                    <td><%= data.diary_comments.count %></td>
+                    <td class="text-center"><%= link_to "閲覧する", admin_group_diary_path(@group, data.id), class: "btn btn-primary" %></td>
+                  </tr>
               <% end %>
             </tbody>
           </table>
