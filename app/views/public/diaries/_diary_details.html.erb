@@ -35,7 +35,12 @@
 
 <% if diary.user == current_user %>
   <div class="row">
-    <div class="col-md-6 mt-5 text-left">
+    <div class="col-md-6 mt-2 text-left">
+      <% if diary.status %>
+        <p>設定：非公開(グループ作成者のみ閲覧可能)</p>
+      <% else %>
+        <p>設定：公開(グループ参加者閲覧可能)</p>
+      <% end %>
       <%= link_to "編集する", edit_group_diary_path(group.id, diary.id), class: "btn btn-blue mr-3" %>
       <%= link_to "削除する", group_diary_path(group.id, diary.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
     </div>
