@@ -15,6 +15,9 @@
       <div class="col-md-7 mt-3 mt-md-0">
         <div class="card p-1">
           <%= safe_join(@diary.body.split("\n"),tag(:br)) %><!--改行を反映させる-->
+          <div class="text-right">
+            作成者：<%= @diary.user.nickname %>
+          </div>
           <table class="table">
             <% @diary_comments.each do |diary_comment| %>
               <tr>
