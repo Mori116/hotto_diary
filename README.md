@@ -72,7 +72,9 @@ _UI Flows_<br>
 
 - コメント機能の非同期通信
 - Action Mailer
+- Simple Calendar
 - Rubocop
+- Rspec
 
 ## 使用素材
 
