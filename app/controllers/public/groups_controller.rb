@@ -26,9 +26,9 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @owner = @group.owner_id
-    @user = User.find_by(id: @owner)
-    @user_count = @group.users.where(is_deleted: false).size
+    owner_id = @group.owner_id
+    @user = User.find(owner_id)
+    @count_users = @group.users.where(is_deleted: false).size
   end
 
   def edit
