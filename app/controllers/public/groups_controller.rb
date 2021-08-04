@@ -74,9 +74,9 @@ class Public::GroupsController < ApplicationController
   # グループから抜ける処理
 
   def destroy
-    @group = Group.find(params[:id])
-    if @group.owner_id == current_user.id
-      @group.destroy
+    group = Group.find(params[:id])
+    if group.owner_id == current_user.id
+      group.destroy
       redirect_to groups_path
     else
       redirect_to groups_path

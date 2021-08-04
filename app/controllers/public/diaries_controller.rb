@@ -56,13 +56,13 @@ class Public::DiariesController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:group_id])
-    @diary = Diary.find(params[:id])
-    if @diary.user_id == current_user.id
-      @diary.destroy
-      redirect_to group_diaries_path(@group)
+    group = Group.find(params[:group_id])
+    diary = Diary.find(params[:id])
+    if diary.user_id == current_user.id
+      diary.destroy
+      redirect_to group_diaries_path(group)
     else
-      redirect_to group_diaries_path(@group)
+      redirect_to group_diaries_path(group)
     end
   end
 
