@@ -5,9 +5,9 @@ class Public::ContactsController < ApplicationController
   end
 
   def create
-    @contact = Contact.new(contact_params)
-    if @contact.save
-      ContactMailer.send_mail(@contact).deliver
+    contact = Contact.new(contact_params)
+    if contact.save
+      ContactMailer.send_mail(contact).deliver
       redirect_to contacts_complete_path
     else
       render :new

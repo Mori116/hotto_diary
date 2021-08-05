@@ -16,12 +16,12 @@ class Public::DiariesController < ApplicationController
   end
 
   def create
-    @group = Group.find(params[:group_id])
-    @diary = Diary.new(diary_params)
-    @diary.user_id = current_user.id
-    @diary.group_id = @group.id
-    if @diary.save
-      redirect_to group_diary_path(@group, @diary)
+    group = Group.find(params[:group_id])
+    diary = Diary.new(diary_params)
+    diary.user_id = current_user.id
+    diary.group_id = group.id
+    if diary.save
+      redirect_to group_diary_path(group, diary)
     else
       render "new"
     end
@@ -42,16 +42,16 @@ class Public::DiariesController < ApplicationController
   end
 
   def update
-    @group = Group.find(params[:group_id])
-    @diary = Diary.find(params[:id])
-    if @diary.user_id == current_user.id
-      if @diary.update(diary_params)
-        redirect_to group_diary_path(@group, @diary)
+    group = Group.find(params[:group_id])
+    diary = Diary.find(params[:id])
+    if diary.user_id == current_user.id
+      if diary.update(diary_params)
+        redirect_to group_diary_path(group, diary)
       else
         render "edit"
       end
     else
-      redirect_to group_diaries_path(@group)
+      redirect_to group_diaries_path(group)
     end
   end
 

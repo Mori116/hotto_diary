@@ -3,9 +3,9 @@ class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @false_user = User.not_deleted.pluck(:id)
-    @false_owner = Group.where(owner_id: @false_user)
-    @groups = @false_owner.includes(:users).where(users: {is_deleted: false}).order_desc_per_10(params[:page])
+    false_user = User.not_deleted.pluck(:id)
+    false_owner = Group.where(owner_id: false_user)
+    @groups = false_owner.includes(:users).where(users: {is_deleted: false}).order_desc_per_10(params[:page])
     # 有効ステータスのグループ作成者のグループのみ表示させる
   end
 
@@ -14,11 +14,11 @@ class Public::GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
-    @group.owner_id = current_user.id
-    @group.users << current_user
-    if @group.save
-      redirect_to group_path(@group)
+    group = Group.new(group_params)
+    group.owner_id = current_user.id
+    group.users << current_user
+    if group.save
+      redirect_to group_path(group)
     else
       render "new"
     end
@@ -36,10 +36,10 @@ class Public::GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.find(params[:id])
-    if @group.owner_id == current_user.id
-      if @group.update(group_params)
-        redirect_to group_path(@group)
+    group = Group.find(params[:id])
+    if group.owner_id == current_user.id
+      if group.update(group_params)
+        redirect_to group_path(group)
       else
         render "edit"
       end
@@ -54,11 +54,11 @@ class Public::GroupsController < ApplicationController
   # グループ参加パスワードの画面表示
 
   def join_create
-    @group = Group.find(params[:id])
-    if @group && @group.authenticate(params[:group][:password])
-      @group.users << current_user
+    group = Group.find(params[:id])
+    if group && group.authenticate(params[:group][:password])
+      group.users << current_user
       # passwordが合っていたらグループにcurrent_userが追加される
-      redirect_to group_diaries_path(@group)
+      redirect_to group_diaries_path(group)
     else
       flash[:alert] = "パスワードが正しくありません。"
       render "join"
@@ -67,9 +67,9 @@ class Public::GroupsController < ApplicationController
   # グループに参加する処理
 
   def exit
-    @group = Group.find(params[:id])
-    @group.users.delete(current_user)
-    redirect_to group_path(@group)
+    group = Group.find(params[:id])
+    group.users.delete(current_user)
+    redirect_to group_path(group)
   end
   # グループから抜ける処理
 
