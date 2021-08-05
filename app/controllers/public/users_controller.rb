@@ -11,9 +11,9 @@ class Public::UsersController < ApplicationController
   end
 
   def join_groups
-    @false_user = User.not_deleted.pluck(:id)
-    @false_owner = Group.where(owner_id: @false_user)
-    @groups = @false_owner.includes(:group_users, :users)
+    false_user = User.not_deleted.pluck(:id)
+    false_owner = Group.where(owner_id: false_user)
+    @groups = false_owner.includes(:group_users, :users)
                           .where(group_users: { user_id: current_user.id })
                           .where(users: { is_deleted: false })
     # 有効ステータスのグループ作成者のグループ、ユーザのみ表示させる
@@ -25,9 +25,9 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to user_path(@user)
+    user = User.find(params[:id])
+    if user.update(user_params)
+      redirect_to user_path(user)
     else
       render "edit"
     end
@@ -38,8 +38,8 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
-    @user = User.find(current_user.id)
-    @user.update(is_deleted: true)
+    user = User.find(current_user.id)
+    user.update(is_deleted: true)
     # ユーザステータスを有効から退会にする
     reset_session
     # すべてのセッション情報を削除

@@ -7,8 +7,8 @@ class Admin::NewsController < ApplicationController
   end
 
   def create
-    @news = News.new(news_params)
-    if @news.save
+    news = News.new(news_params)
+    if news.save
       redirect_to root_path
     else
       render "new"
@@ -20,8 +20,8 @@ class Admin::NewsController < ApplicationController
   end
 
   def update
-    @news = News.find(params[:id])
-    if @news.update(news_params)
+    news = News.find(params[:id])
+    if news.update(news_params)
       redirect_to root_path
     else
       render "edit"
